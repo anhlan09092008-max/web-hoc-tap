@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+body {
+  margin: 0;
+  font-family:
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* Đổi font sang kiểu học thuật, rõ ràng */
+  background-color: #f8f9fa; /* Nền xám nhạt thanh lịch thay cho nền gradient hồng */
+  color: #212529;
+  text-align: center;
+}
+
+header {
+  margin: 50px 40px 30px 40px;
+  font-size: 48px; /* Thu nhỏ kích thước tiêu đề để cân đối hơn */
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #800020; /* Đỏ trầm (Burgundy) sang trọng, học thuật */
+  text-transform: uppercase; /* Viết hoa để tăng tính trang trọng */
+}
+
+p.intro {
+  font-size: 16px;
+  font-style: italic;
+  color: #495057;
+  font-family:
+    "Georgia", serif; /* Font có chân tạo cảm giác như sách báo nghiên cứu */
+}
+
+nav {
+  background: #ffffff;
+  border-top: 1px solid #dee2e6;
+  border-bottom: 2px solid #800020; /* Đường kẻ đỏ trầm làm điểm nhấn */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navbar {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  margin: 0;
+}
+
+.navbar a {
+  text-decoration: none;
+  font-size: 15px;
+  color: #495057; /* Màu chữ mặc định tối giản */
+  font-weight: 600;
+  padding: 15px 25px; /* Tăng padding để tạo khoảng trống chuẩn menu học thuật */
+  display: block;
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar a:hover {
+  background: #800020; /* Hiệu ứng hover đổi sang nền đỏ trầm */
+  color: #ffffff; /* Chữ chuyển trắng */
+}
+
+/* Giữ nguyên cấu trúc các Class bổ trợ bên dưới để không lỗi code lõi */
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding: 40px;
+}
+
+.card {
+  width: 220px;
+  height: 280px;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 4px; /* Bo góc nhẹ, vuông vắn và chuyên nghiệp hơn */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.card h3 {
+  margin: 12px 0 5px;
+  font-size: 16px;
+  color: #800020; /* Đồng bộ tiêu đề card sang đỏ trầm */
+}
+
+.card p {
+  font-size: 13px;
+  color: #6c757d;
+  padding: 0 12px;
+  line-height: 1.4;
+}
+
+footer {
+  margin-top: 50px;
+  padding: 30px 40px;
+  background: #212529; /* Đổi nền footer sang màu xám đen để tạo độ đầm cho trang */
+  color: #ffffff;
+  text-align: left;
+  border-top: 4px solid #800020; /* Viền đỏ trầm trên cùng của footer */
+}
+
+iframe {
+  width: 100%;
+  height: 650px;
+  border: none;
+  background: #ffffff;
+  margin-top: 20px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+  </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Học Tập - Kho Tri Thức Số</title>
+    <style> 
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa; color: #212529; text-align: center;
+        }
+        header {
+            margin: 50px 40px 10px 40px;
+            font-size: 48px; font-weight: 700;
+            color: #800020; text-transform: uppercase; letter-spacing: 1px;
+        }
+        p.intro {
+            margin: 0 40px 40px 40px;
+            font-size: 16px; font-style: italic; color: #495057; font-family: 'Georgia', serif;
+        }
+        
+        /* THANH MENU CHÍNH CỐ ĐỊNH */
+        nav {
+            background: #ffffff;
+            border-top: 1px solid #dee2e6; 
+            border-bottom: 2px solid #800020;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* ĐƯA 5 MÔN LÊN CÙNG 1 HÀNG NGANG */
+        .navbar {
+            list-style: none; 
+            display: flex; 
+            justify-content: center; /* Căn giữa 5 môn trên hàng */
+            margin: 0; 
+            padding: 0;
+            width: 100%;
+        }
+
+        .navbar li {
+            margin: 0; /* Bỏ khoảng cách của thẻ li */
+            flex: 1; /* Chia đều độ rộng cho cả 5 môn nếu muốn, hoặc để tự động */
+            max-width: 220px; /* Giới hạn độ rộng tối đa mỗi nút để chữ không bị thưa */
+        }
+
+        .navbar a {
+            text-decoration: none; 
+            font-size: 14px; /* Giảm nhẹ cỡ chữ để 5 môn đứng cạnh nhau vừa vặn */
+            color: #495057; 
+            font-weight: 600;
+            padding: 15px 10px; /* Tối ưu padding để không bị đẩy xuống hàng mới */
+            display: block; 
+            text-align: center;
+            white-space: nowrap; /* Ép chữ luôn nằm trên 1 hàng, không tự ý xuống dòng */
+            transition: all 0.2s;
+        }
+        .navbar a:hover { 
+            background: #800020; 
+            color: #ffffff; 
+        }
+
+        /* VÙNG GIAO DIỆN CÁC Ô CHỌN MÔN (CARD) */
+        .container {
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; padding: 50px 40px;
+            max-width: 1200px; margin: 0 auto;
+        }
+        .card {
+            width: 240px; background: white; border: 1px solid #e9ecef;
+            border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            overflow: hidden; transition: all 0.2s ease; text-decoration: none; text-align: center;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+        .card .card-img { width: 100%; height: 130px; background: #800020; color: white; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+        .card h3 { margin: 15px 0 10px; font-size: 18px; color: #800020; padding: 0 10px; }
+        .card p { font-size: 13px; color: #6c757d; padding: 0 15px 20px 15px; margin: 0; line-height: 1.4; }
+        
+        footer {
+            margin-top: 50px; padding: 30px 40px; background: #212529; color: #ffffff; text-align: left; border-top: 4px solid #800020;
+        }
+    </style> 
+</head>
+<body>
+
+    <header>Kho lưu trữ học tập</header>
+
+    <!-- THANH MENU ĐÃ ĐƯỢC ÉP LÊN 1 HÀNG -->
+    <nav> 
+        <ul class="navbar">
+            <li><a href="index.html" style="background:#800020; color:white;">Trang Chủ</a></li>
+            <li><a href="nguyenliketoan.html">Nguyên lý kế toán</a></li>
+            <li><a href="toancaocap.html">Toán cao cấp 1</a></li>
+            <li><a href="triethoc.html">Triết học Mác-Lênin</a></li>
+            <li><a href="phapluat.html">Pháp luật & SHTT</a></li>
+            <li><a href="congngheai.html">Nhập môn CN AI</a></li>
+        </ul>
+    </nav>
+
+    <!-- GIAO DIỆN HỘP CHỌN MÔN HỌC (CARD) -->
+    <div class="container">
+        <a href="nguyenliketoan.html" class="card">
+            <div class="card-img">📊</div>
+            <h3>Nguyên lý kế toán</h3>
+            <p>Lưu trữ 8 chương cốt lõi về tài sản, nguồn vốn và định khoản tài khoản.</p>
+        </a>
+        <a href="toancaocap.html" class="card">
+            <div class="card-img">📐</div>
+            <h3>Toán cao cấp 1</h3>
+            <p>Ma trận, định thức, hệ phương trình tuyến tính và vi phân.</p>
+        </a>
+        <a href="triethoc.html" class="card">
+            <div class="card-img">🔬</div>
+            <h3>Triết học Mác-Lênin</h3>
+            <p>Hệ thống thế giới quan, phương pháp luận và các quy luật biện chứng.</p>
+        </a>
+        <a href="phapluat.html" class="card">
+            <div class="card-img">⚖️</div>
+            <h3>Pháp luật & SHTT</h3>
+            <p>Tổng quan hệ thống pháp luật đại cương và luật sở hữu trí tuệ Việt Nam.</p>
+        </a>
+        <a href="congngheai.html" class="card">
+            <div class="card-img">🤖</div>
+            <h3>Nhập môn CN AI</h3>
+            <p>Kiến thức cơ bản về trí tuệ nhân tạo, Machine Learning và mô hình ngôn ngữ lớn.</p>
+        </a>
+    </div>
+
+    <footer>
+        <h2><b>KHO TÀI LIỆU HỌC TẬP SỐ</b></h2> 
+    </footer>
+
+</body>
+</html>
+
+
+  <script>
+try {
+try {
+  document.getElementById("btn").addEventListener("click", () => {
+    alert("Nice! JavaScript đang chạy trong Preview iframe ✅");
+  });
+} catch (error) {
+  console.error(error);
+}
+
+} catch (error) {
+  console.error(error);
+}
+  </script>
+</body>
+</html>
