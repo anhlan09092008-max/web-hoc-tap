@@ -1,24 +1,778 @@
-<!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#800020"><title>Nguyên lý kế toán | Kho học tập PTIT</title><style>
-:root{--wine:#800020;--wine2:#a12a4b;--ink:#252936;--muted:#667085;--paper:#fff;--bg:#f6f7fb;--line:#e5e7eb;--soft:#fff1f4}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Segoe UI",Arial,sans-serif}
-a{color:var(--wine)}.hero{background:linear-gradient(135deg,#5b1027,var(--wine),#a63c5d);color:#fff;padding:38px 20px 32px}.wrap{max-width:1120px;margin:auto;padding:0 18px}.topline{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{color:#ffe2e9;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.hero h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:12px 0}.hero p{max-width:760px;color:#ffeaf0;margin:0}.home-link{color:#fff;text-decoration:none;border:1px solid #ffffff80;padding:8px 12px;border-radius:12px;font-size:14px}.nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}.navin{display:flex;gap:6px;overflow-x:auto;padding:9px 0}.nav a{white-space:nowrap;text-decoration:none;padding:9px 12px;border-radius:10px;font-size:14px;color:#4b5563}.nav a:hover,.nav a.active{background:var(--soft);color:var(--wine);font-weight:700}
-main{padding:28px 0 56px}.intro{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-bottom:22px}.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 5px 18px #18223008}.panel h2{margin:0 0 8px;font-size:20px;color:var(--wine)}.panel p{margin:0;color:var(--muted)}.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.stat{background:#faf0f3;border-radius:12px;padding:8px 12px;color:var(--wine);font-size:13px;font-weight:700}
-.toolbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:24px 0 14px}.toolbar h2{margin:0;font-size:23px}.search{min-width:min(100%,280px);border:1px solid #d0d5dd;border-radius:12px;padding:11px 14px;font:inherit;background:#fff}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.chapter{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;min-width:0}.chapter h3{font-size:17px;line-height:1.35;margin:0 0 8px}.chapter .number{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:10px;background:var(--soft);color:var(--wine);font-size:13px;font-weight:800;margin-right:8px}.chapter p{font-size:14px;color:var(--muted);margin:0 0 12px}.assets{display:flex;gap:8px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #e2b9c5;color:var(--wine);background:#fff7f9;padding:8px 11px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer}.btn.primary{background:var(--wine);color:#fff;border-color:var(--wine)}.btn.disabled{color:#8b909b;background:#f5f6f8;border-color:#e5e7eb;cursor:default}
-.reader{margin-top:24px;display:none}.reader.show{display:block}.reader-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.reader h2{font-size:20px;margin:0}.reader iframe{width:100%;height:min(76vh,850px);min-height:440px;border:1px solid var(--line);border-radius:12px;background:#fff;margin-top:12px}.notice{font-size:13px;color:var(--muted);margin-top:10px}.empty{padding:18px;border:1px dashed #d0d5dd;border-radius:12px;color:var(--muted);background:#fafafa}.footer{border-top:1px solid var(--line);background:#fff;padding:22px 0;color:var(--muted);font-size:13px}
-@media(max-width:720px){.intro{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.hero{padding:28px 0}.hero h1{font-size:29px}.reader iframe{min-height:360px}.wrap{padding:0 14px}}
-</style></head>
-<body><header class="hero"><div class="wrap"><div class="topline"><div class="brand">BloomVerse · Kho học tập PTIT</div><a class="home-link" href="index.html">← Về trang chủ</a></div><h1>📊 Nguyên lý kế toán</h1><p>Kho tài liệu học phần Nguyên lý kế toán · 8 chương · ưu tiên bài giảng và slide PDF đã lưu trong repository.</p></div></header><div class="nav"><div class="wrap navin"><a href="index.html">⌂ Trang chủ</a><a href="nguyenliketoan.html">Nguyên lý kế toán</a><a href="toancaocap.html">Toán cao cấp 1</a><a href="triethoc.html">Triết học</a><a href="phapluat.html">Pháp luật & SHTT</a><a href="congngheai.html">Nhập môn AI</a></div></div>
-<main class="wrap"><section class="intro"><div class="panel"><h2>📚 Không gian học tập</h2><p>Chọn chương để mở tài liệu. Ưu tiên các PDF đã lưu ngay trong repository để giảm phụ thuộc vào liên kết bên ngoài. Trên điện thoại, nếu khung xem không hiển thị, hãy chọn “Mở tab mới”.</p><div class="stats"><span class="stat" id="chapterCount">Đang tải chương…</span><span class="stat">Tương thích điện thoại</span><span class="stat">Có tìm kiếm</span></div></div><div class="panel"><h2>🔗 Tài nguyên môn học</h2><p><a class="btn primary" href="https://lms.ptit.edu.vn/courses/course-v1:PTIT+FIA1321+20261" target="_blank" rel="noopener">Mở LMS PTIT ↗</a></p></div></section>
-<div class="toolbar"><h2>Danh mục chương</h2><input class="search" id="search" type="search" placeholder="Tìm chương hoặc tài liệu…"></div><section class="grid" id="chapters"></section>
-<section class="panel reader" id="reader"><div class="reader-head"><h2 id="readerTitle">Trình xem tài liệu</h2><div class="assets"><a class="btn primary" id="openNew" href="#" target="_blank" rel="noopener">Mở tab mới ↗</a><button class="btn" id="closeReader" type="button">Đóng</button></div></div><iframe id="pdfFrame" title="Trình xem tài liệu" loading="lazy"></iframe><p class="notice">Tài liệu được nhúng từ file trong repository hoặc từ nguồn ngoài. Khả năng xem trong khung phụ thuộc trình duyệt và quyền truy cập của nguồn.</p></section>
-</main><footer class="footer"><div class="wrap">BloomVerse · Kho lưu trữ học tập cá nhân · Kiểm tra quyền truy cập trước khi chia sẻ tài liệu.</div></footer>
-<script>
-const chapters=[{"n":1,"title":"Bản chất của hạch toán kế toán","desc":"Sự phát sinh, phát triển, vai trò và đối tượng của hạch toán kế toán.","assets":[{"label":"Bài giảng PDF","url":"baigiangchuong1-nlkt.pdf"},{"label":"Slide PDF","url":"slidechuong1-nlkt.pdf"},{"label":"Bài giảng bổ sung (Drive)","url":"https://drive.google.com/file/d/1S9tkkAC4I6AbkWCCY2YtTR5GXw9-oJkx/preview"},{"label":"Canva chương 1","url":"https://www.canva.com/design/DAHV8CDTDyY/zKcw60F2jE-aLPsRjm_45g/view"}]},{"n":2,"title":"Phương pháp chứng từ kế toán","assets":[{"label":"Bài giảng PDF","url":"baigiangchuong2-nlkt.pdf"},{"label":"Slide PDF","url":"slidechuong2-nlkt.pdf"},{"label":"Bài giảng bổ sung (Drive)","url":"https://drive.google.com/file/d/1M3WvlYfz7sosEOhDpayRKEK3-L0fsClt/preview"}]},{"n":3,"title":"Phương pháp tính giá","assets":[{"label":"Bài giảng PDF","url":"baigiangchuong3-nlkt.pdf"},{"label":"Slide PDF","url":"slidechuong3-nlkt.pdf"},{"label":"Slide LMS","url":"slidelmsc3-nlkt.pdf"},{"label":"Tài liệu bổ sung (Drive)","url":"https://drive.google.com/file/d/1IkC2ALEIJQPAiE7Jrq466h6NCJVjyj3K/preview"}]},{"n":4,"title":"Phương pháp tài khoản kế toán","assets":[{"label":"Bài giảng PDF","url":"baigiangchuong4-nlkt.pdf"},{"label":"Slide (Drive)","url":"https://drive.google.com/file/d/1BIKGr15po9MnvzkAi_8eOB4IpVaWOKFj/preview"}]},{"n":5,"title":"Phương pháp tổng hợp cân đối kế toán","assets":[{"label":"Bài giảng PDF","url":"baigiangchuong5-nlkt.pdf"},{"label":"Slide đang cập nhật"}]},{"n":6,"title":"Hạch toán một số quá trình sản xuất kinh doanh chủ yếu","assets":[{"label":"Bài giảng PDF","url":"baigiangchuong6-nlkt.pdf"},{"label":"Slide đang cập nhật"}]},{"n":7,"title":"Sổ kế toán và hình thức kế toán","assets":[{"label":"Bài giảng PDF","url":"baigiangchuong7-nlkt.pdf"},{"label":"Slide đang cập nhật"}]},{"n":8,"title":"Tổ chức công tác kế toán","assets":[{"label":"Bài giảng PDF","url":"baigiangchuong8-nlkt.pdf"},{"label":"Slide đang cập nhật"}]}];
-const grid=document.getElementById('chapters'), search=document.getElementById('search');
-document.getElementById('chapterCount').textContent=chapters.length+' mục học tập';
-function render(){const q=search.value.trim().toLocaleLowerCase('vi');const filtered=chapters.filter(c=>(c.title+' '+(c.desc||'')+' '+(c.assets||[]).map(a=>a.label).join(' ')).toLocaleLowerCase('vi').includes(q));grid.innerHTML=filtered.map(c=>'<article class="chapter"><h3><span class="number">'+c.n+'</span>'+c.title+'</h3><p>'+ (c.desc||'Tài liệu và nội dung ôn tập của chương.') +'</p><div class="assets">'+(c.assets||[]).map(a=>a.url?'<a class="btn" href="'+a.url+'" target="_blank" rel="noopener">'+a.label+' ↗</a>':'<span class="btn disabled">'+a.label+'</span>').join('')+'</div></article>').join('')||'<div class="empty">Không tìm thấy chương hoặc tài liệu phù hợp.</div>';grid.querySelectorAll('a.btn[href]').forEach(a=>{const url=a.getAttribute('href');if(/\.pdf($|\?)/i.test(url)||url.includes('/preview')){a.addEventListener('click',e=>{if(e.ctrlKey||e.metaKey||e.shiftKey)return;e.preventDefault();openReader(url,a.textContent.trim());});}});}
-function openReader(url,title){const reader=document.getElementById('reader');document.getElementById('readerTitle').textContent=title.replace('↗','').trim();document.getElementById('pdfFrame').src=url;document.getElementById('openNew').href=url;reader.classList.add('show');reader.scrollIntoView({behavior:'smooth',block:'start'});}
-document.getElementById('closeReader').addEventListener('click',()=>{document.getElementById('reader').classList.remove('show');document.getElementById('pdfFrame').src='about:blank';});search.addEventListener('input',render);render();
-</script></body></html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#800020">
+
+  <title>Nguyên lý kế toán | Kho học tập PTIT</title>
+
+  <style>
+    /* =========================================================
+       1. CẤU HÌNH CHUNG
+       ========================================================= */
+    :root {
+      --wine: #800020;
+      --wine-light: #a12a4b;
+      --text: #252936;
+      --muted: #667085;
+      --background: #f6f7fb;
+      --border: #e5e7eb;
+      --soft-pink: #fff1f4;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--wine);
+    }
+
+    .container {
+      width: min(1120px, 100% - 36px);
+      margin-inline: auto;
+    }
+
+    /* =========================================================
+       2. PHẦN ĐẦU TRANG
+       ========================================================= */
+    .hero {
+      padding: 38px 20px 32px;
+      color: var(--white);
+      background: linear-gradient(
+        135deg,
+        #5b1027,
+        var(--wine),
+        #a63c5d
+      );
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand {
+      color: #ffe2e9;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 12px 0;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.2;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0;
+      color: #ffeaf0;
+    }
+
+    .home-link {
+      padding: 8px 12px;
+      border: 1px solid #ffffff80;
+      border-radius: 12px;
+      color: var(--white);
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    /* =========================================================
+       3. THANH ĐIỀU HƯỚNG
+       ========================================================= */
+    .navigation {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    .navigation-list {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-block: 9px;
+    }
+
+    .navigation a {
+      flex-shrink: 0;
+      padding: 9px 12px;
+      border-radius: 10px;
+      color: #4b5563;
+      font-size: 14px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .navigation a:hover,
+    .navigation a.active {
+      background: var(--soft-pink);
+      color: var(--wine);
+      font-weight: 700;
+    }
+
+    /* =========================================================
+       4. KHỐI GIỚI THIỆU
+       ========================================================= */
+    main {
+      padding-block: 28px 56px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .panel {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--white);
+      box-shadow: 0 5px 18px #18223008;
+    }
+
+    .panel h2 {
+      margin: 0 0 8px;
+      color: var(--wine);
+      font-size: 20px;
+    }
+
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .stat {
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: #faf0f3;
+      color: var(--wine);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* =========================================================
+       5. TÌM KIẾM VÀ DANH MỤC CHƯƠNG
+       ========================================================= */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 24px 0 14px;
+    }
+
+    .toolbar h2 {
+      margin: 0;
+      font-size: 23px;
+    }
+
+    .search-input {
+      min-width: min(100%, 280px);
+      padding: 11px 14px;
+      border: 1px solid #d0d5dd;
+      border-radius: 12px;
+      background: var(--white);
+      font: inherit;
+    }
+
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .chapter-card {
+      min-width: 0;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--white);
+    }
+
+    .chapter-title {
+      margin: 0 0 8px;
+      font-size: 17px;
+      line-height: 1.4;
+    }
+
+    .chapter-number {
+      display: inline-grid;
+      width: 30px;
+      height: 30px;
+      margin-right: 8px;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--soft-pink);
+      color: var(--wine);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .chapter-description {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .resource-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 11px;
+      border: 1px solid #e2b9c5;
+      border-radius: 10px;
+      background: #fff7f9;
+      color: var(--wine);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .button-primary {
+      border-color: var(--wine);
+      background: var(--wine);
+      color: var(--white);
+    }
+
+    .button-disabled {
+      border-color: var(--border);
+      background: #f5f6f8;
+      color: #8b909b;
+      cursor: default;
+    }
+
+    .empty-message {
+      padding: 18px;
+      border: 1px dashed #d0d5dd;
+      border-radius: 12px;
+      background: #fafafa;
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       6. KHUNG XEM TÀI LIỆU
+       ========================================================= */
+    .document-reader {
+      display: none;
+      margin-top: 24px;
+    }
+
+    .document-reader.is-visible {
+      display: block;
+    }
+
+    .reader-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .reader-header h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .reader-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .reader-frame {
+      width: 100%;
+      height: min(76vh, 850px);
+      min-height: 440px;
+      margin-top: 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+    }
+
+    .reader-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================================================
+       7. CHÂN TRANG
+       ========================================================= */
+    .footer {
+      padding-block: 22px;
+      border-top: 1px solid var(--border);
+      background: var(--white);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================================================
+       8. GIAO DIỆN ĐIỆN THOẠI / MÀN HÌNH NHỎ
+       ========================================================= */
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .hero {
+        padding: 28px 0;
+      }
+
+      .hero h1 {
+        font-size: 29px;
+      }
+
+      .intro-grid,
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .reader-frame {
+        min-height: 360px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PHẦN 1: TIÊU ĐỀ TRANG -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-top">
+        <div class="brand">BloomVerse · Kho học tập PTIT</div>
+        <a class="home-link" href="index.html">← Về trang chủ</a>
+      </div>
+
+      <h1>📊 Nguyên lý kế toán</h1>
+      <p>
+        Kho tài liệu học phần Nguyên lý kế toán gồm 8 chương.
+        Ưu tiên bài giảng và slide PDF đã lưu trong repository.
+      </p>
+    </div>
+  </header>
+
+  <!-- PHẦN 2: MENU CHUYỂN GIỮA CÁC MÔN -->
+  <nav class="navigation" aria-label="Điều hướng các môn học">
+    <div class="container navigation-list">
+      <a href="index.html">⌂ Trang chủ</a>
+      <a href="nguyenliketoan.html" class="active">Nguyên lý kế toán</a>
+      <a href="toancaocap.html">Toán cao cấp 1</a>
+      <a href="triethoc.html">Triết học</a>
+      <a href="phapluat.html">Pháp luật &amp; SHTT</a>
+      <a href="congngheai.html">Nhập môn AI</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- PHẦN 3: GIỚI THIỆU VÀ LIÊN KẾT LMS -->
+    <section class="intro-grid" aria-label="Thông tin môn học">
+      <div class="panel">
+        <h2>📚 Không gian học tập</h2>
+        <p>
+          Chọn chương để mở tài liệu. Các PDF có sẵn trong repository
+          được ưu tiên để giảm phụ thuộc vào liên kết bên ngoài.
+          Nếu tài liệu không hiển thị trên điện thoại, hãy mở ở tab mới.
+        </p>
+
+        <div class="stats">
+          <span class="stat" id="chapterCount">Đang tải chương…</span>
+          <span class="stat">Tương thích điện thoại</span>
+          <span class="stat">Có tìm kiếm</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>🔗 Tài nguyên môn học</h2>
+        <p>
+          <a
+            class="button button-primary"
+            href="https://lms.ptit.edu.vn/courses/course-v1:PTIT+FIA1321+20261"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Mở LMS PTIT ↗
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- PHẦN 4: TÌM KIẾM VÀ DANH SÁCH CHƯƠNG -->
+    <section aria-labelledby="chapterListTitle">
+      <div class="toolbar">
+        <h2 id="chapterListTitle">Danh mục chương</h2>
+        <input
+          class="search-input"
+          id="searchInput"
+          type="search"
+          placeholder="Tìm chương hoặc tài liệu…"
+          aria-label="Tìm chương hoặc tài liệu"
+        >
+      </div>
+
+      <!-- JavaScript sẽ hiển thị các chương vào vị trí này. -->
+      <div class="chapter-grid" id="chapterList"></div>
+    </section>
+
+    <!-- PHẦN 5: KHUNG ĐỌC PDF -->
+    <section class="panel document-reader" id="documentReader">
+      <div class="reader-header">
+        <h2 id="readerTitle">Trình xem tài liệu</h2>
+
+        <div class="reader-actions">
+          <a
+            class="button button-primary"
+            id="openInNewTab"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Mở tab mới ↗
+          </a>
+
+          <button class="button" id="closeReader" type="button">
+            Đóng
+          </button>
+        </div>
+      </div>
+
+      <iframe
+        class="reader-frame"
+        id="documentFrame"
+        title="Trình xem tài liệu"
+        loading="lazy"
+      ></iframe>
+
+      <p class="reader-note">
+        Khả năng xem tài liệu trong khung phụ thuộc vào trình duyệt,
+        định dạng file và quyền truy cập của nguồn tài liệu.
+      </p>
+    </section>
+  </main>
+
+  <!-- PHẦN 6: CHÂN TRANG -->
+  <footer class="footer">
+    <div class="container">
+      BloomVerse · Kho lưu trữ học tập cá nhân · Kiểm tra quyền truy cập
+      trước khi chia sẻ tài liệu.
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       1. DỮ LIỆU CÁC CHƯƠNG
+       Muốn đổi tên chương hoặc thêm đường dẫn, sửa trong phần này.
+       ========================================================= */
+    const chapters = [
+      {
+        number: 1,
+        title: "Bản chất của hạch toán kế toán",
+        description:
+          "Sự phát sinh, phát triển, vai trò và đối tượng của hạch toán kế toán.",
+        resources: [
+          {
+            label: "Bài giảng PDF",
+            url: "baigiangchuong1-nlkt.pdf"
+          },
+          {
+            label: "Slide PDF",
+            url: "slidechuong1-nlkt.pdf"
+          },
+          {
+            label: "Bài giảng bổ sung (Drive)",
+            url: "https://drive.google.com/file/d/1S9tkkAC4I6AbkWCCY2YtTR5GXw9-oJkx/preview"
+          },
+          {
+            label: "Canva chương 1",
+            url: "https://www.canva.com/design/DAHV8CDTDyY/zKcw60F2jE-aLPsRjm_45g/view"
+          }
+        ]
+      },
+      {
+        number: 2,
+        title: "Phương pháp chứng từ kế toán",
+        description: "Tài liệu học tập và slide của chương 2.",
+        resources: [
+          {
+            label: "Bài giảng PDF",
+            url: "baigiangchuong2-nlkt.pdf"
+          },
+          {
+            label: "Slide PDF",
+            url: "slidechuong2-nlkt.pdf"
+          },
+          {
+            label: "Bài giảng bổ sung (Drive)",
+            url: "https://drive.google.com/file/d/1M3WvlYfz7sosEOhDpayRKEK3-L0fsClt/preview"
+          }
+        ]
+      },
+      {
+        number: 3,
+        title: "Phương pháp tính giá",
+        description: "Bài giảng, slide và tài liệu bổ sung của chương 3.",
+        resources: [
+          {
+            label: "Bài giảng PDF",
+            url: "baigiangchuong3-nlkt.pdf"
+          },
+          {
+            label: "Slide PDF",
+            url: "slidechuong3-nlkt.pdf"
+          },
+          {
+            label: "Slide LMS",
+            url: "slidelmsc3-nlkt.pdf"
+          },
+          {
+            label: "Tài liệu bổ sung (Drive)",
+            url: "https://drive.google.com/file/d/1IkC2ALEIJQPAiE7Jrq466h6NCJVjyj3K/preview"
+          }
+        ]
+      },
+      {
+        number: 4,
+        title: "Phương pháp tài khoản kế toán",
+        description: "Bài giảng và tài liệu slide của chương 4.",
+        resources: [
+          {
+            label: "Bài giảng PDF",
+            url: "baigiangchuong4-nlkt.pdf"
+          },
+          {
+            label: "Slide (Drive)",
+            url: "https://drive.google.com/file/d/1BIKGr15po9MnvzkAi_8eOB4IpVaWOKFj/preview"
+          }
+        ]
+      },
+      {
+        number: 5,
+        title: "Phương pháp tổng hợp cân đối kế toán",
+        description: "Bài giảng PDF; slide đang được cập nhật.",
+        resources: [
+          {
+            label: "Bài giảng PDF",
+            url: "baigiangchuong5-nlkt.pdf"
+          },
+          {
+            label: "Slide đang cập nhật"
+          }
+        ]
+      },
+      {
+        number: 6,
+        title: "Hạch toán một số quá trình sản xuất kinh doanh chủ yếu",
+        description: "Bài giảng PDF; slide đang được cập nhật.",
+        resources: [
+          {
+            label: "Bài giảng PDF",
+            url: "baigiangchuong6-nlkt.pdf"
+          },
+          {
+            label: "Slide đang cập nhật"
+          }
+        ]
+      },
+      {
+        number: 7,
+        title: "Sổ kế toán và hình thức kế toán",
+        description: "Bài giảng PDF; slide đang được cập nhật.",
+        resources: [
+          {
+            label: "Bài giảng PDF",
+            url: "baigiangchuong7-nlkt.pdf"
+          },
+          {
+            label: "Slide đang cập nhật"
+          }
+        ]
+      },
+      {
+        number: 8,
+        title: "Tổ chức công tác kế toán",
+        description: "Bài giảng PDF; slide đang được cập nhật.",
+        resources: [
+          {
+            label: "Bài giảng PDF",
+            url: "baigiangchuong8-nlkt.pdf"
+          },
+          {
+            label: "Slide đang cập nhật"
+          }
+        ]
+      }
+    ];
+
+    /* =========================================================
+       2. LẤY CÁC THÀNH PHẦN HTML CẦN DÙNG
+       ========================================================= */
+    const chapterList = document.getElementById("chapterList");
+    const searchInput = document.getElementById("searchInput");
+    const chapterCount = document.getElementById("chapterCount");
+
+    const documentReader = document.getElementById("documentReader");
+    const readerTitle = document.getElementById("readerTitle");
+    const documentFrame = document.getElementById("documentFrame");
+    const openInNewTab = document.getElementById("openInNewTab");
+    const closeReader = document.getElementById("closeReader");
+
+    chapterCount.textContent = `${chapters.length} chương học tập`;
+
+    /* =========================================================
+       3. HIỂN THỊ DANH SÁCH CHƯƠNG VÀ TÀI LIỆU
+       ========================================================= */
+    function renderChapters() {
+      const keyword = searchInput.value.trim().toLocaleLowerCase("vi");
+
+      const filteredChapters = chapters.filter((chapter) => {
+        const resourceNames = chapter.resources
+          .map((resource) => resource.label)
+          .join(" ");
+
+        const searchableText = [
+          chapter.title,
+          chapter.description || "",
+          resourceNames
+        ].join(" ").toLocaleLowerCase("vi");
+
+        return searchableText.includes(keyword);
+      });
+
+      if (filteredChapters.length === 0) {
+        chapterList.innerHTML =
+          '<div class="empty-message">Không tìm thấy chương hoặc tài liệu phù hợp.</div>';
+        return;
+      }
+
+      chapterList.innerHTML = filteredChapters.map((chapter) => {
+        const resourceButtons = chapter.resources.map((resource) => {
+          // Tài liệu chưa có đường dẫn chỉ hiện nhãn, không tạo liên kết giả.
+          if (!resource.url) {
+            return `
+              <span class="button button-disabled">
+                ${resource.label}
+              </span>
+            `;
+          }
+
+          return `
+            <a
+              class="button resource-link"
+              href="${resource.url}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ${resource.label} ↗
+            </a>
+          `;
+        }).join("");
+
+        return `
+          <article class="chapter-card">
+            <h3 class="chapter-title">
+              <span class="chapter-number">${chapter.number}</span>
+              ${chapter.title}
+            </h3>
+
+            <p class="chapter-description">
+              ${chapter.description || "Tài liệu và nội dung ôn tập của chương."}
+            </p>
+
+            <div class="resource-list">
+              ${resourceButtons}
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      // PDF và liên kết Google Drive dạng /preview được mở trong khung đọc.
+      chapterList.querySelectorAll(".resource-link").forEach((link) => {
+        const url = link.getAttribute("href");
+        const isPdf = /\.pdf($|\?)/i.test(url);
+        const isDrivePreview = url.includes("/preview");
+
+        if (isPdf || isDrivePreview) {
+          link.addEventListener("click", (event) => {
+            // Giữ hành vi mở tab mới nếu người dùng dùng Ctrl/Cmd/Shift.
+            if (event.ctrlKey || event.metaKey || event.shiftKey) {
+              return;
+            }
+
+            event.preventDefault();
+            openDocument(url, link.textContent.trim());
+          });
+        }
+      });
+    }
+
+    /* =========================================================
+       4. MỞ TÀI LIỆU TRONG KHUNG XEM
+       ========================================================= */
+    function openDocument(url, title) {
+      readerTitle.textContent = title.replace("↗", "").trim();
+      documentFrame.src = url;
+      openInNewTab.href = url;
+
+      documentReader.classList.add("is-visible");
+      documentReader.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    /* =========================================================
+       5. ĐÓNG KHUNG XEM VÀ XỬ LÝ TÌM KIẾM
+       ========================================================= */
+    closeReader.addEventListener("click", () => {
+      documentReader.classList.remove("is-visible");
+      documentFrame.src = "about:blank";
+    });
+
+    searchInput.addEventListener("input", renderChapters);
+
+    // Hiển thị danh sách chương ngay khi mở trang.
+    renderChapters();
+  </script>
+</body>
+</html>
