@@ -594,15 +594,34 @@
        4. MỞ TÀI LIỆU TRONG KHUNG XEM
        ================================================== */
 
+    // Tạo URL trình xem phù hợp cho PDF.
+    function getViewerUrl(url) {
+      // Google Drive đã có sẵn trình xem nhúng nên giữ nguyên URL /preview.
+      if (url.includes("drive.google.com") && url.includes("/preview")) {
+        return url;
+      }
+
+      // PDF nằm trên website/GitHub Pages: chuyển qua Google Docs Viewer.
+      // Trình xem này thường hoạt động tốt hơn iframe PDF gốc trên điện thoại.
+      if (/\.pdf($|\?)/i.test(url)) {
+        const publicPdfUrl = new URL(url, window.location.href).href;
+        return "https://docs.google.com/gview?embedded=1&url=" +
+          encodeURIComponent(publicPdfUrl);
+      }
+
+      return url;
+    }
+
     function openDocument(url, title) {
+      const viewerUrl = getViewerUrl(url);
+
       readerTitle.textContent = title.replace("↗", "").trim();
-      pdfFrame.src = url;
-      openNewButton.href = url;
+      pdfFrame.src = viewerUrl;
 
-      // Hiện khung tài liệu.
+      // Nút dự phòng vẫn mở file gốc nếu trình xem nhúng không hoạt động.
+      openNewButton.href = new URL(url, window.location.href).href;
+
       reader.classList.add("show");
-
-      // Cuộn xuống khung tài liệu.
       reader.scrollIntoView({
         behavior: "smooth",
         block: "start"
