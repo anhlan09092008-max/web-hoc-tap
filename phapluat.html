@@ -669,7 +669,7 @@
 
       // Canva: dùng chế độ nhúng để sơ đồ hiện trong khung của chương.
       if (url.includes("canva.com/design/")) {
-        const cleanUrl = url.split("?")[0].replace(/\\/$/, "");
+        const cleanUrl = url.split("?")[0].replace(/\/$/, "");
         return cleanUrl + "/view?embed";
       }
 
