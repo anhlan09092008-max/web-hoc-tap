@@ -760,6 +760,32 @@
        6. ĐÓNG KHUNG XEM VÀ TÌM KIẾM
        ================================================== */
 
+    // Bắt sự kiện bằng event delegation để nút Xem vẫn hoạt động
+    // sau mỗi lần tìm kiếm và vẽ lại danh sách chương.
+    chapterList.addEventListener("click", function (event) {
+      const link = event.target.closest("a.resource-link");
+      const closeButton = event.target.closest("[data-close-reader]");
+
+      if (closeButton) {
+        const reader = closeButton.closest("[data-reader]");
+        reader.querySelector("[data-reader-frame]").src = "about:blank";
+        reader.classList.remove("show");
+        reader.hidden = true;
+        return;
+      }
+
+      if (!link) return;
+
+      const url = link.getAttribute("href");
+      const canEmbed = /\\.pdf($|\\?)/i.test(url) ||
+        url.includes("/preview") || url.includes("canva.com/design/");
+
+      if (!canEmbed || event.ctrlKey || event.metaKey || event.shiftKey) return;
+
+      event.preventDefault();
+      openDocument(url, link.textContent.trim(), link.closest(".chapter"));
+    });
+
     // Mỗi khi người dùng nhập từ khóa, cập nhật danh sách chương.
     searchInput.addEventListener("input", renderChapters);
 
