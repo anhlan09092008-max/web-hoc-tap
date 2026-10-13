@@ -777,7 +777,7 @@
       if (!link) return;
 
       const url = link.getAttribute("href");
-      const canEmbed = /\\.pdf($|\\?)/i.test(url) ||
+      const canEmbed = /\.pdf($|\?)/i.test(url) ||
         url.includes("/preview") || url.includes("canva.com/design/");
 
       if (!canEmbed || event.ctrlKey || event.metaKey || event.shiftKey) return;
