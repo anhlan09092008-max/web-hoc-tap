@@ -201,9 +201,12 @@
       font: inherit;
     }
 
+    .reader[hidden] { display: none; }
+    .reader iframe { display: block; width: 100%; min-height: 420px; height: min(72vh, 800px); margin-top: 12px; border: 1px solid var(--border); border-radius: 10px; background: white; }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: minmax(0, 1fr);
       gap: 14px;
     }
 
@@ -444,31 +447,6 @@
     <!-- JavaScript sẽ đưa các thẻ chương vào khu vực này -->
     <section class="grid" id="chapters"></section>
 
-    <!-- KHUNG XEM PDF / TÀI LIỆU -->
-    <section class="panel reader" id="reader">
-      <div class="reader-head">
-        <h2 id="readerTitle">Trình xem tài liệu</h2>
-
-        <div class="assets">
-          <a
-            class="btn primary"
-            id="openNew"
-            href="#"
-            target="_blank"
-            rel="noopener"
-          >Mở tab mới ↗</a>
-
-          <button class="btn" id="closeReader" type="button">Đóng</button>
-        </div>
-      </div>
-
-      <iframe id="pdfFrame" title="Trình xem tài liệu" loading="lazy"></iframe>
-
-      <p class="notice">
-        Tài liệu được nhúng từ file trong repository hoặc từ nguồn ngoài.
-        Khả năng xem trong khung phụ thuộc trình duyệt và quyền truy cập của nguồn.
-      </p>
-    </section>
   </main>
 
   <!-- CHÂN TRANG -->
@@ -588,11 +566,6 @@
     const searchInput = document.getElementById("search");
     const chapterCount = document.getElementById("chapterCount");
 
-    const reader = document.getElementById("reader");
-    const readerTitle = document.getElementById("readerTitle");
-    const pdfFrame = document.getElementById("pdfFrame");
-    const openNewButton = document.getElementById("openNew");
-    const closeReaderButton = document.getElementById("closeReader");
 
     // Hiển thị tổng số mục trong danh sách.
     chapterCount.textContent = chapters.length + " mục học tập";
@@ -602,70 +575,40 @@
        ================================================== */
 
     function renderChapters() {
-      // Lấy chữ người dùng nhập và chuyển về chữ thường.
       const keyword = searchInput.value.trim().toLocaleLowerCase("vi");
-
-      // Chỉ giữ những chương có tên hoặc tài liệu khớp từ khóa.
       const filteredChapters = chapters.filter(function (chapter) {
-        const assetNames = chapter.assets
-          .map(function (asset) {
-            return asset.label;
-          })
-          .join(" ");
-
-        const searchableText =
-          chapter.title + " " + (chapter.desc || "") + " " + assetNames;
-
-        return searchableText.toLocaleLowerCase("vi").includes(keyword);
+        const names = chapter.assets.map(function (asset) { return asset.label; }).join(" ");
+        return (chapter.title + " " + (chapter.desc || "") + " " + names)
+          .toLocaleLowerCase("vi").includes(keyword);
       });
 
-      // Nếu không tìm thấy kết quả, hiện một thông báo.
       if (filteredChapters.length === 0) {
-        chapterList.innerHTML =
-          '<div class="empty">Không tìm thấy chương hoặc tài liệu phù hợp.</div>';
+        chapterList.innerHTML = '<div class="empty">Không tìm thấy chương hoặc tài liệu phù hợp.</div>';
         return;
       }
 
-      // Tạo thẻ HTML cho từng chương.
-      const chapterCards = filteredChapters.map(function (chapter) {
-        const description =
-          chapter.desc || "Tài liệu và nội dung ôn tập của chương.";
-
-        // Tạo nút cho từng tài liệu của chương.
+      chapterList.innerHTML = filteredChapters.map(function (chapter) {
         const assetButtons = chapter.assets.map(function (asset) {
-          // Có đường dẫn thì tạo nút bấm được.
-          if (asset.url) {
-            return `
-              <a
-                class="btn"
-                href="${asset.url}"
-                target="_blank"
-                rel="noopener"
-              >${asset.label} ↗</a>
-            `;
-          }
-
-          // Chưa có đường dẫn thì chỉ hiện nút thông báo.
-          return `<span class="btn disabled">${asset.label}</span>`;
+          if (!asset.url) return '<span class="btn disabled">' + asset.label + '</span>';
+          return '<a class="btn resource-link" href="' + asset.url +
+            '" target="_blank" rel="noopener">' + asset.label + ' · Xem</a>';
         }).join("");
 
-        return `
-          <article class="chapter">
-            <h3>
-              <span class="number">${chapter.n}</span>
-              ${chapter.title}
-            </h3>
-            <p>${description}</p>
-            <div class="assets">${assetButtons}</div>
-          </article>
-        `;
+        return '<article class="chapter">' +
+          '<h3><span class="number">' + chapter.n + '</span>' + chapter.title + '</h3>' +
+          '<p>' + (chapter.desc || "Tài liệu và nội dung ôn tập của chương.") + '</p>' +
+          '<div class="assets">' + assetButtons + '</div>' +
+          '<section class="panel reader" data-reader hidden>' +
+            '<div class="reader-head"><h2 data-reader-title>Trình xem tài liệu</h2>' +
+              '<div class="assets">' +
+                '<a class="btn primary" data-open-original href="#" target="_blank" rel="noopener">Mở tab mới ↗</a>' +
+                '<button class="btn" data-close-reader type="button">Đóng</button>' +
+              '</div>' +
+            '</div>' +
+            '<iframe data-reader-frame title="Trình xem tài liệu" loading="lazy"></iframe>' +
+            '<p class="notice">Khung xem nằm ngay dưới chương này. Nếu nguồn không cho phép nhúng, hãy thử mở tab mới.</p>' +
+          '</section></article>';
       }).join("");
-
-      // Đưa các thẻ chương vừa tạo vào trang.
-      chapterList.innerHTML = chapterCards;
-
-      // Gắn chức năng mở khung xem tài liệu cho các nút phù hợp.
-      addDocumentButtonEvents();
     }
 
     /* ==================================================
@@ -690,58 +633,50 @@
       return url;
     }
 
-    function openDocument(url, title) {
-      const viewerUrl = getViewerUrl(url);
+    function openDocument(url, title, chapterCard) {
+      const reader = chapterCard.querySelector("[data-reader]");
+      const frame = reader.querySelector("[data-reader-frame]");
+      reader.querySelector("[data-reader-title]").textContent = title.replace("↗", "").trim();
+      reader.querySelector("[data-open-original]").href = new URL(url, window.location.href).href;
 
-      readerTitle.textContent = title.replace("↗", "").trim();
-      pdfFrame.src = viewerUrl;
-
-      // Nút dự phòng vẫn mở file gốc nếu trình xem nhúng không hoạt động.
-      openNewButton.href = new URL(url, window.location.href).href;
-
-      reader.classList.add("show");
-      reader.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+      document.querySelectorAll("[data-reader]").forEach(function (item) {
+        if (item !== reader) {
+          item.hidden = true;
+          item.classList.remove("show");
+          item.querySelector("[data-reader-frame]").src = "about:blank";
+        }
       });
+
+      frame.src = getViewerUrl(url);
+      reader.hidden = false;
+      reader.classList.add("show");
+      reader.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
-    /* ==================================================
-       5. GẮN SỰ KIỆN CHO CÁC NÚT TÀI LIỆU
-       ================================================== */
-
     function addDocumentButtonEvents() {
-      const documentLinks = chapterList.querySelectorAll("a.btn[href]");
+      chapterList.querySelectorAll("a.resource-link").forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          const url = link.getAttribute("href");
+          if (!(/\.pdf($|\?)/i.test(url) || url.includes("/preview"))) return;
+          if (event.ctrlKey || event.metaKey || event.shiftKey) return;
+          event.preventDefault();
+          openDocument(url, link.textContent.trim(), link.closest(".chapter"));
+        });
+      });
 
-      documentLinks.forEach(function (link) {
-        const url = link.getAttribute("href");
-
-        // Chỉ mở trong khung với PDF hoặc đường dẫn xem trước Google Drive.
-        const isPdf = /\.pdf($|\?)/i.test(url);
-        const isDrivePreview = url.includes("/preview");
-
-        if (isPdf || isDrivePreview) {
-          link.addEventListener("click", function (event) {
-            // Nếu người dùng giữ Ctrl/Command/Shift, để trình duyệt xử lý như bình thường.
-            if (event.ctrlKey || event.metaKey || event.shiftKey) {
-              return;
-            }
-
-            event.preventDefault();
-            openDocument(url, link.textContent.trim());
-          });
-        }
+      chapterList.querySelectorAll("[data-close-reader]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          const reader = button.closest("[data-reader]");
+          reader.querySelector("[data-reader-frame]").src = "about:blank";
+          reader.classList.remove("show");
+          reader.hidden = true;
+        });
       });
     }
 
     /* ==================================================
        6. ĐÓNG KHUNG XEM VÀ TÌM KIẾM
        ================================================== */
-
-    closeReaderButton.addEventListener("click", function () {
-      reader.classList.remove("show");
-      pdfFrame.src = "about:blank";
-    });
 
     // Mỗi khi người dùng nhập từ khóa, cập nhật danh sách chương.
     searchInput.addEventListener("input", renderChapters);
