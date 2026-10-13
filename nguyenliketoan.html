@@ -7,7 +7,10 @@
   <title>Nguyên lí kế toán | Kho học tập PTIT</title>
 
   <style>
-    /* 1. MÀU SẮC CHUNG: đổi các giá trị ở đây để đổi màu website */
+    /* =========================
+       1. MÀU SẮC DÙNG CHUNG
+       Bạn có thể đổi các mã màu ở đây.
+       ========================= */
     :root {
       --wine: #800020;
       --wine-light: #a12a4b;
@@ -18,7 +21,9 @@
       --pink-light: #fff1f4;
     }
 
-    /* 2. THIẾT LẬP CƠ BẢN */
+    /* =========================
+       2. THIẾT LẬP CƠ BẢN
+       ========================= */
     * {
       box-sizing: border-box;
     }
@@ -44,19 +49,21 @@
       padding: 0 18px;
     }
 
-    /* 3. PHẦN ĐẦU TRANG */
+    /* =========================
+       3. PHẦN ĐẦU TRANG
+       ========================= */
     .hero {
       padding: 38px 20px 32px;
-      background: linear-gradient(135deg, #5b1027, var(--wine), #a63c5d);
       color: white;
+      background: linear-gradient(135deg, #5b1027, var(--wine), #a63c5d);
     }
 
     .topline {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
       gap: 16px;
+      flex-wrap: wrap;
     }
 
     .brand {
@@ -88,7 +95,9 @@
       text-decoration: none;
     }
 
-    /* 4. THANH ĐIỀU HƯỚNG */
+    /* =========================
+       4. THANH ĐIỀU HƯỚNG
+       ========================= */
     .nav {
       position: sticky;
       top: 0;
@@ -120,7 +129,9 @@
       font-weight: bold;
     }
 
-    /* 5. KHU VỰC NỘI DUNG */
+    /* =========================
+       5. KHỐI NỘI DUNG VÀ THẺ
+       ========================= */
     main {
       padding: 28px 0 56px;
     }
@@ -266,7 +277,36 @@
       cursor: default;
     }
 
-    /* 6. KHUNG XEM TÀI LIỆU */
+    /* Sơ đồ tư duy Canva hiển thị ngay trong trang */
+    .mindmap-panel {
+      margin-top: 16px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .mindmap-panel[hidden] { display: none; }
+
+    .mindmap-panel iframe {
+      display: block;
+      width: 100%;
+      height: min(75vh, 820px);
+      min-height: 380px;
+      margin: 12px 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    @media (max-width: 640px) {
+      .mindmap-panel { padding: 10px; }
+      .mindmap-panel iframe { height: 68vh; min-height: 320px; }
+    }
+
+    /* =========================
+       6. KHUNG XEM TÀI LIỆU
+       ========================= */
     .reader {
       display: none;
       margin-top: 24px;
@@ -313,7 +353,9 @@
       color: var(--muted);
     }
 
-    /* 7. CHÂN TRANG */
+    /* =========================
+       7. CHÂN TRANG
+       ========================= */
     .footer {
       padding: 22px 0;
       border-top: 1px solid var(--border);
@@ -322,7 +364,9 @@
       font-size: 13px;
     }
 
-    /* 8. ĐIỀU CHỈNH CHO ĐIỆN THOẠI */
+    /* =========================
+       8. GIAO DIỆN ĐIỆN THOẠI
+       ========================= */
     @media (max-width: 720px) {
       .intro,
       .grid {
@@ -357,15 +401,15 @@
         <a class="home-link" href="index.html">← Về trang chủ</a>
       </div>
 
-      <h1> Nguyên lí kế toán </h1>
+      <h1>⚖️ Pháp luật &amp; Sở hữu trí tuệ</h1>
       <p>
-        Kho bài giảng, slide và tài liệu ôn tập Nguyên lí kế toán
-        theo các chương hiện có.
+        Kho tài liệu học phần Pháp luật và Sở hữu trí tuệ.
+        Các chương chưa có PDF sẽ được ghi rõ để tránh dẫn tới liên kết giả.
       </p>
     </div>
   </header>
 
-  <!-- THANH ĐIỀU HƯỚNG CÁC MÔN -->
+  <!-- THANH ĐIỀU HƯỚNG GIỮA CÁC MÔN -->
   <nav class="nav">
     <div class="wrap navin">
       <a href="index.html">⌂ Trang chủ</a>
@@ -378,7 +422,7 @@
   </nav>
 
   <main class="wrap">
-    <!-- GIỚI THIỆU VÀ TÀI NGUYÊN -->
+    <!-- GIỚI THIỆU VÀ LIÊN KẾT HỮU ÍCH -->
     <section class="intro">
       <div class="panel">
         <h2>📚 Không gian học tập</h2>
@@ -399,19 +443,38 @@
         <h2>🔗 Tài nguyên môn học</h2>
         <p>
           <a
-            class="button button-primary"
-            href="https://lms.ptit.edu.vn/courses/course-v1:PTIT+FIA1321+20261"
+            class="btn primary"
+            href="https://lms.ptit.edu.vn/courses/course-v1:PTIT+BSA12117+20261"
             target="_blank"
-            rel="noopener noreferrer"
-          >
-            Mở LMS PTIT ↗
-          </a>
-        </p>
-      </div>
+            rel="noopener"
+          >Mở LMS PTIT ↗</a>
 
+          <button class="btn" id="toggleMindmap" type="button" aria-expanded="false">
+            Xem sơ đồ tư duy ngay tại đây
+          </button>
+        </p>
+        
+
+        <!-- Sơ đồ tư duy Canva hiển thị ngay trên trang -->
+        <section class="mindmap-panel" id="mindmapPanel" hidden>
+          <div class="reader-head">
+            <h3>Sơ đồ tư duy — Nguyên lí kế toán</h3>
+            <button class="btn" id="closeMindmap" type="button">Đóng sơ đồ</button>
+          </div>
+          <iframe
+            id="mindmapFrame"
+            title="Sơ đồ tư duy Nguyên lí kế tóa"
+            loading="lazy"
+            allowfullscreen
+            src="about:blank"
+          ></iframe>
+          <p class="notice">Nếu Canva không cho nhúng bản xem này, bạn vẫn có thể mở liên kết Canva gốc.</p>
+          <a class="btn" href="https://www.canva.com/design/DAHV8CDTDyY/zKcw60F2jE-aLPsRjm_45g/view" target="_blank" rel="noopener">Mở Canva ở tab mới ↗</a>
+        </section>
+      </div>
     </section>
 
-    <!-- Ô TÌM KIẾM -->
+    <!-- TÌM KIẾM VÀ DANH SÁCH CHƯƠNG -->
     <div class="toolbar">
       <h2>Danh mục chương</h2>
       <input
@@ -423,7 +486,7 @@
       >
     </div>
 
-    <!-- JavaScript sẽ tự hiển thị các chương ở đây -->
+    <!-- JavaScript sẽ đưa các thẻ chương vào khu vực này -->
     <section class="grid" id="chapters"></section>
 
   </main>
@@ -440,28 +503,21 @@
     /* ==================================================
        1. DANH SÁCH CHƯƠNG VÀ TÀI LIỆU
 
-       Đây là nơi bạn sửa khi muốn thêm chương, đổi tên
-       chương hoặc cập nhật đường dẫn tài liệu.
-
-       n      = số thứ tự chương
-       title  = tên chương
-       assets = danh sách tài liệu của chương
-       label  = tên nút hiển thị
-       url    = đường dẫn đến tài liệu
+       Khi muốn thêm hoặc sửa tài liệu, bạn chủ yếu sửa
+       dữ liệu trong danh sách này.
+       - n: số chương
+       - title: tên chương
+       - desc: mô tả (không bắt buộc)
+       - assets: các tài liệu thuộc chương
+       - label: chữ hiển thị trên nút
+       - url: đường dẫn tài liệu
        ================================================== */
 
-    <script>
-    /* =========================================================
-       1. DỮ LIỆU CÁC CHƯƠNG
-       Muốn đổi tên chương hoặc thêm đường dẫn, sửa trong phần này.
-       ========================================================= */
-    const chapters = [
+        const chapters = [
       {
-        number: 1,
+        n: 1,
         title: "Bản chất của hạch toán kế toán",
-        description:
-          "Sự phát sinh, phát triển, vai trò và đối tượng của hạch toán kế toán.",
-        resources: [
+        assets:[
           {
             label: "Bài giảng PDF",
             url: "https://drive.google.com/file/d/1S9tkkAC4I6AbkWCCY2YtTR5GXw9-oJkx/preview"
@@ -481,10 +537,9 @@
         ]
       },
       {
-        number: 2,
+        n: 2,
         title: "Phương pháp chứng từ kế toán",
-        description: "Tài liệu học tập và slide của chương 2.",
-        resources: [
+        assets:[
           {
             label: "Bài giảng PDF",
             url: "https://drive.google.com/file/d/1M3WvlYfz7sosEOhDpayRKEK3-L0fsClt/preview"
@@ -504,10 +559,9 @@
         ]
       },
       {
-        number: 3,
+        n: 3,
         title: "Phương pháp tính giá",
-        description: "Bài giảng, slide và tài liệu bổ sung của chương 3.",
-        resources: [
+         assets:[
           {
             label: "Bài giảng PDF",
             url: "https://drive.google.com/file/d/1IkC2ALEIJQPAiE7Jrq466h6NCJVjyj3K/preview"
@@ -531,10 +585,9 @@
         ]
       },
       {
-        number: 4,
+        n: 4,
         title: "Phương pháp tài khoản kế toán",
-        description: "Bài giảng và tài liệu slide của chương 4.",
-        resources: [
+         assets:[
           {
             label: "Bài giảng PDF",
             url: "https://drive.google.com/file/d/1GA31legEFWAW7eiCm_6gLES7U4QKIuOT/preview"
@@ -558,10 +611,9 @@
         ]
       },
       {
-        number: 5,
+        n: 5,
         title: "Phương pháp tổng hợp cân đối kế toán",
-        description: "Bài giảng PDF; slide đang được cập nhật.",
-        resources: [
+         assets:[
           {
             label: "Bài giảng PDF",
             url: "https://drive.google.com/file/d/19P58O0QZcIN5pXsp2AF0u-wTvP65UoI8/preview"
@@ -585,10 +637,9 @@
         ]
       },
       {
-        number: 6,
+        n: 6,
         title: "Hạch toán một số quá trình sản xuất kinh doanh chủ yếu",
-        description: "Bài giảng PDF; slide đang được cập nhật.",
-        resources: [
+         assets:[
           {
             label: "Bài giảng PDF",
             url: "https://drive.google.com/file/d/19r8POAY2I7fRVV-UsZ5ORk4NB1mQwvIt/preview"
@@ -612,10 +663,9 @@
         ]
       },
       {
-        number: 7,
+        n: 7,
         title: "Sổ kế toán và hình thức kế toán",
-        description: "Bài giảng PDF; slide đang được cập nhật.",
-        resources: [
+         assets:[
           {
             label: "Bài giảng PDF",
             url: "https://drive.google.com/file/d/1hC5yt7eVszw6TSNsJFXBpjjQnPIGGrwk/preview"
@@ -639,10 +689,9 @@
         ]
       },
       {
-        number: 8,
+        n: 8,
         title: "Tổ chức công tác kế toán",
-        description: "Bài giảng PDF; slide đang được cập nhật.",
-        resources: [
+         assets:[
           {
             label: "Bài giảng PDF",
             url: "https://drive.google.com/file/d/1CubMrOWlPO8QfqqJqeRfoB113qWljYzZ/preview"
@@ -678,18 +727,19 @@
     const chapterCount = document.getElementById("chapterCount");
 
 
-    // Hiển thị tổng số chương/tài liệu mục lục.
+    // Hiển thị tổng số mục trong danh sách.
     chapterCount.textContent = chapters.length + " mục học tập";
 
     /* ==================================================
-       3. HIỂN THỊ CHƯƠNG TRÊN TRANG
+       3. HIỂN THỊ DANH SÁCH CHƯƠNG
        ================================================== */
 
     function renderChapters() {
       const keyword = searchInput.value.trim().toLocaleLowerCase("vi");
       const filteredChapters = chapters.filter(function (chapter) {
         const names = chapter.assets.map(function (asset) { return asset.label; }).join(" ");
-        return (chapter.title + " " + names).toLocaleLowerCase("vi").includes(keyword);
+        return (chapter.title + " " + (chapter.desc || "") + " " + names)
+          .toLocaleLowerCase("vi").includes(keyword);
       });
 
       if (filteredChapters.length === 0) {
@@ -706,7 +756,7 @@
 
         return '<article class="chapter">' +
           '<h3><span class="number">' + chapter.n + '</span>' + chapter.title + '</h3>' +
-          '<p>Tài liệu và nội dung ôn tập của chương.</p>' +
+          '<p>' + (chapter.desc || "Tài liệu và nội dung ôn tập của chương.") + '</p>' +
           '<div class="assets">' + assetButtons + '</div>' +
           '<section class="panel reader" data-reader hidden>' +
             '<div class="reader-head"><h2 data-reader-title>Trình xem tài liệu</h2>' +
@@ -719,8 +769,6 @@
             '<p class="notice">Khung xem nằm ngay dưới chương này. Nếu nguồn không cho phép nhúng, hãy thử mở tab mới.</p>' +
           '</section></article>';
       }).join("");
-
-      addDocumentButtonEvents();
     }
 
     /* ==================================================
@@ -732,6 +780,12 @@
       // Google Drive đã có sẵn trình xem nhúng nên giữ nguyên URL /preview.
       if (url.includes("drive.google.com") && url.includes("/preview")) {
         return url;
+      }
+
+      // Canva: dùng chế độ nhúng để sơ đồ hiện trong khung của chương.
+      if (url.includes("canva.com/design/")) {
+        const cleanUrl = url.split("?")[0].replace(/\/$/, "");
+        return cleanUrl + "/view?embed";
       }
 
       // PDF nằm trên website/GitHub Pages: chuyển qua Google Docs Viewer.
@@ -769,7 +823,7 @@
       chapterList.querySelectorAll("a.resource-link").forEach(function (link) {
         link.addEventListener("click", function (event) {
           const url = link.getAttribute("href");
-          if (!(/\.pdf($|\?)/i.test(url) || url.includes("/preview"))) return;
+          if (!(/\.pdf($|\?)/i.test(url) || url.includes("/preview") || url.includes("canva.com/design/"))) return;
           if (event.ctrlKey || event.metaKey || event.shiftKey) return;
           event.preventDefault();
           openDocument(url, link.textContent.trim(), link.closest(".chapter"));
@@ -786,17 +840,72 @@
       });
     }
 
+    // Mở/đóng sơ đồ tư duy Canva ngay trong trang, không chuyển trang.
+    const toggleMindmap = document.getElementById("toggleMindmap");
+    const mindmapPanel = document.getElementById("mindmapPanel");
+    const mindmapFrame = document.getElementById("mindmapFrame");
+    const closeMindmap = document.getElementById("closeMindmap");
+    const mindmapEmbedUrl =
+      "https://www.canva.com/design/DAHWxyhDNk4/vHTmdWVw0vXUHzjEBYlWGg/view?embed";
+
+    toggleMindmap.addEventListener("click", function () {
+      const willOpen = mindmapPanel.hidden;
+      mindmapPanel.hidden = !willOpen;
+      toggleMindmap.setAttribute("aria-expanded", String(willOpen));
+      toggleMindmap.textContent = willOpen
+        ? "Ẩn sơ đồ tư duy"
+        : "Xem sơ đồ tư duy ngay tại đây";
+
+      if (willOpen) {
+        mindmapFrame.src = mindmapEmbedUrl;
+        mindmapPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      } else {
+        mindmapFrame.src = "about:blank";
+      }
+    });
+
+    closeMindmap.addEventListener("click", function () {
+      mindmapPanel.hidden = true;
+      mindmapFrame.src = "about:blank";
+      toggleMindmap.setAttribute("aria-expanded", "false");
+      toggleMindmap.textContent = "Xem sơ đồ tư duy ngay tại đây";
+    });
+
     /* ==================================================
        6. ĐÓNG KHUNG XEM VÀ TÌM KIẾM
        ================================================== */
 
-    // Cập nhật danh sách mỗi khi người dùng gõ tìm kiếm.
+    // Bắt sự kiện bằng event delegation để nút Xem vẫn hoạt động
+    // sau mỗi lần tìm kiếm và vẽ lại danh sách chương.
+    chapterList.addEventListener("click", function (event) {
+      const link = event.target.closest("a.resource-link");
+      const closeButton = event.target.closest("[data-close-reader]");
+
+      if (closeButton) {
+        const reader = closeButton.closest("[data-reader]");
+        reader.querySelector("[data-reader-frame]").src = "about:blank";
+        reader.classList.remove("show");
+        reader.hidden = true;
+        return;
+      }
+
+      if (!link) return;
+
+      const url = link.getAttribute("href");
+      const canEmbed = /\.pdf($|\?)/i.test(url) ||
+        url.includes("/preview") || url.includes("canva.com/design/");
+
+      if (!canEmbed || event.ctrlKey || event.metaKey || event.shiftKey) return;
+
+      event.preventDefault();
+      openDocument(url, link.textContent.trim(), link.closest(".chapter"));
+    });
+
+    // Mỗi khi người dùng nhập từ khóa, cập nhật danh sách chương.
     searchInput.addEventListener("input", renderChapters);
 
-    // Hiển thị danh sách chương khi vừa mở trang.
+    // Hiển thị danh sách chương ngay khi mở trang.
     renderChapters();
   </script>
 </body>
 </html>
-
-
