@@ -680,7 +680,7 @@
 
       // Sơ đồ Canva: dùng chế độ nhúng để mở ngay trong iframe.
       if (url.includes("canva.com/design/")) {
-        const cleanUrl = url.split("?")[0].replace(/\\/$/, "");
+        const cleanUrl = url.split("?")[0].replace(/\/$/, "");
         return cleanUrl + "/view?embed";
       }
 
