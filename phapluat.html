@@ -521,6 +521,10 @@
           {
             label: "Tài liệu (Drive)",
             url: "https://drive.google.com/file/d/1UOISCqLANSQDHVVVziEUq_r85hsdat01/preview"
+          },
+          {
+            label: "Sơ đồ tư duy Canva",
+            url: "https://www.canva.com/design/DAHWxyhDNk4/vHTmdWVw0vXUHzjEBYlWGg/view"
           }
         ]
       },
@@ -663,6 +667,12 @@
         return url;
       }
 
+      // Canva: dùng chế độ nhúng để sơ đồ hiện trong khung của chương.
+      if (url.includes("canva.com/design/")) {
+        const cleanUrl = url.split("?")[0].replace(/\\/$/, "");
+        return cleanUrl + "/view?embed";
+      }
+
       // PDF nằm trên website/GitHub Pages: chuyển qua Google Docs Viewer.
       // Trình xem này thường hoạt động tốt hơn iframe PDF gốc trên điện thoại.
       if (/\.pdf($|\?)/i.test(url)) {
@@ -698,7 +708,7 @@
       chapterList.querySelectorAll("a.resource-link").forEach(function (link) {
         link.addEventListener("click", function (event) {
           const url = link.getAttribute("href");
-          if (!(/\.pdf($|\?)/i.test(url) || url.includes("/preview"))) return;
+          if (!(/\.pdf($|\?)/i.test(url) || url.includes("/preview") || url.includes("canva.com/design/"))) return;
           if (event.ctrlKey || event.metaKey || event.shiftKey) return;
           event.preventDefault();
           openDocument(url, link.textContent.trim(), link.closest(".chapter"));
