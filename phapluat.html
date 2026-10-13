@@ -277,6 +277,33 @@
       cursor: default;
     }
 
+    /* Sơ đồ tư duy Canva hiển thị ngay trong trang */
+    .mindmap-panel {
+      margin-top: 16px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .mindmap-panel[hidden] { display: none; }
+
+    .mindmap-panel iframe {
+      display: block;
+      width: 100%;
+      height: min(75vh, 820px);
+      min-height: 380px;
+      margin: 12px 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    @media (max-width: 640px) {
+      .mindmap-panel { padding: 10px; }
+      .mindmap-panel iframe { height: 68vh; min-height: 320px; }
+    }
+
     /* =========================
        6. KHUNG XEM TÀI LIỆU
        ========================= */
@@ -422,13 +449,27 @@
             rel="noopener"
           >Mở LMS PTIT ↗</a>
 
-          <a
-            class="btn"
-            href="https://www.canva.com/design/DAHWxyhDNk4/vHTmdWVw0vXUHzjEBYlWGg/view"
-            target="_blank"
-            rel="noopener"
-          >Sơ đồ Canva ↗</a>
+          <button class="btn" id="toggleMindmap" type="button" aria-expanded="false">
+            Xem sơ đồ tư duy ngay tại đây
+          </button>
         </p>
+
+        <!-- Sơ đồ tư duy Canva hiển thị ngay trên trang -->
+        <section class="mindmap-panel" id="mindmapPanel" hidden>
+          <div class="reader-head">
+            <h3>Sơ đồ tư duy — Pháp luật &amp; Sở hữu trí tuệ</h3>
+            <button class="btn" id="closeMindmap" type="button">Đóng sơ đồ</button>
+          </div>
+          <iframe
+            id="mindmapFrame"
+            title="Sơ đồ tư duy Pháp luật và Sở hữu trí tuệ"
+            loading="lazy"
+            allowfullscreen
+            src="about:blank"
+          ></iframe>
+          <p class="notice">Nếu Canva không cho nhúng bản xem này, bạn vẫn có thể mở liên kết Canva gốc.</p>
+          <a class="btn" href="https://www.canva.com/design/DAHWxyhDNk4/vHTmdWVw0vXUHzjEBYlWGg/view" target="_blank" rel="noopener">Mở Canva ở tab mới ↗</a>
+        </section>
       </div>
     </section>
 
@@ -673,6 +714,37 @@
         });
       });
     }
+
+    // Mở/đóng sơ đồ tư duy Canva ngay trong trang, không chuyển trang.
+    const toggleMindmap = document.getElementById("toggleMindmap");
+    const mindmapPanel = document.getElementById("mindmapPanel");
+    const mindmapFrame = document.getElementById("mindmapFrame");
+    const closeMindmap = document.getElementById("closeMindmap");
+    const mindmapEmbedUrl =
+      "https://www.canva.com/design/DAHWxyhDNk4/vHTmdWVw0vXUHzjEBYlWGg/view?embed";
+
+    toggleMindmap.addEventListener("click", function () {
+      const willOpen = mindmapPanel.hidden;
+      mindmapPanel.hidden = !willOpen;
+      toggleMindmap.setAttribute("aria-expanded", String(willOpen));
+      toggleMindmap.textContent = willOpen
+        ? "Ẩn sơ đồ tư duy"
+        : "Xem sơ đồ tư duy ngay tại đây";
+
+      if (willOpen) {
+        mindmapFrame.src = mindmapEmbedUrl;
+        mindmapPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      } else {
+        mindmapFrame.src = "about:blank";
+      }
+    });
+
+    closeMindmap.addEventListener("click", function () {
+      mindmapPanel.hidden = true;
+      mindmapFrame.src = "about:blank";
+      toggleMindmap.setAttribute("aria-expanded", "false");
+      toggleMindmap.textContent = "Xem sơ đồ tư duy ngay tại đây";
+    });
 
     /* ==================================================
        6. ĐÓNG KHUNG XEM VÀ TÌM KIẾM
