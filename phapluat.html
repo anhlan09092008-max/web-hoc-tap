@@ -138,7 +138,7 @@
 
     .intro {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1fr;
       gap: 16px;
       margin-bottom: 22px;
     }
@@ -512,96 +512,146 @@
        - url: đường dẫn tài liệu
        ================================================== */
 
-    const chapters = [
+  const chapters = [
       {
         n: 1,
-        title: "Những vấn đề chung về Nhà nước và pháp luật",
-        assets: [
-          { label: "Slide PDF", url: "slidechuong1-pl.pdf" },
+        title: "Những vấn đề cơ bản về nhà nước và pháp luật",
+        assets:[
           {
-            label: "Tài liệu (Drive)",
+            label: "Slide LMS",
             url: "https://drive.google.com/file/d/1UOISCqLANSQDHVVVziEUq_r85hsdat01/preview"
           },
+          
           {
-            label: "Sơ đồ tư duy Canva",
-            url: "https://www.canva.com/design/DAHWxyhDNk4/vHTmdWVw0vXUHzjEBYlWGg/view"
-          }
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1C58fdS8FBsjCy_Mq1LjmHf-xld13rDW1s07mh9yxsy4/preview"
+          },
         ]
       },
       {
         n: 2,
-        title: "Quy phạm pháp luật – Văn bản QPPL – Quan hệ pháp luật",
-        assets: [
-          { label: "Slide PDF", url: "slidechuong2-pl.pdf" },
+        title: "Quy phạm pháp luật, Văn bản quy phạm pháp luật",
+        assets:[
           {
-            label: "Tài liệu bổ sung (Drive)",
+            label: "Slide LMS",
             url: "https://drive.google.com/file/d/1nqz-576qz768vcsbEkPQBzWwbEmBVi_B/preview"
-          }
+          },
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1C58fdS8FBsjCy_Mq1LjmHf-xld13rDW1s07mh9yxsy4/preview"
+          },
         ]
       },
       {
         n: 3,
-        title: "Vi phạm pháp luật và trách nhiệm pháp lý",
-        assets: [
-          { label: "Slide PDF", url: "slidechuong3-pl.pdf" },
+        title: "Vi phạm pháp luật, Trách nhiệm pháp lý, Pháp chế XHCN",
+         assets:[
+         
           {
-            label: "Tài liệu bổ sung (Drive)",
+            label: "Slide LMS",
             url: "https://drive.google.com/file/d/18rsGhrNqMA6l4PYFcw0Jpj-d-7iOMuNl/preview"
-          }
+          },
+          
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1C58fdS8FBsjCy_Mq1LjmHf-xld13rDW1s07mh9yxsy4/preview"
+          },
         ]
       },
       {
         n: 4,
-        title: "Hiến pháp và chế độ chính trị",
-        assets: [
-          { label: "Slide PDF", url: "slidechuong4-pl.pdf" },
+        title: "Luật Hiến pháp",
+         assets:[
+          
           {
-            label: "Tài liệu bổ sung (Drive)",
+            label: "Slide LMS",
             url: "https://drive.google.com/file/d/1S4zuWCjB8sHw94hHKRM_m53OdAoChgbg/preview"
-          }
+          },
+          
+         
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1C58fdS8FBsjCy_Mq1LjmHf-xld13rDW1s07mh9yxsy4/preview"
+          },
         ]
       },
       {
         n: 5,
-        title: "Pháp luật dân sự và quan hệ dân sự",
-        desc: "Chưa thấy PDF tương ứng trong repository hiện tại; mục này để bạn bổ sung đúng tài liệu môn học.",
-        assets: [
-          { label: "Tài liệu đang cập nhật" }
+        title: "Luật Hành chính",
+         assets:[
+          
+          {
+            label: "Slide LMS",
+           url: "https://drive.google.com/file/d/14lob2atyDLNNglrxfAuwuF8iFOf4g2cv/preview"
+          },
+          
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1C58fdS8FBsjCy_Mq1LjmHf-xld13rDW1s07mh9yxsy4/preview"
+          },
         ]
       },
       {
         n: 6,
-        title: "Pháp luật hành chính",
-        desc: "Chưa thấy PDF tương ứng trong repository hiện tại; mục này để bạn bổ sung đúng tài liệu môn học.",
-        assets: [
-          { label: "Tài liệu đang cập nhật" }
+        title: "Luật Dân sự và Luật Tố tụng dân sự",
+         assets:[
+          
+          {
+            label: "Slide LMS",
+            url: "/preview"
+          },
+          
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1C58fdS8FBsjCy_Mq1LjmHf-xld13rDW1s07mh9yxsy4/preview"
+          },
         ]
       },
       {
         n: 7,
-        title: "Pháp luật hình sự",
-        desc: "Chưa thấy PDF tương ứng trong repository hiện tại; mục này để bạn bổ sung đúng tài liệu môn học.",
-        assets: [
-          { label: "Tài liệu đang cập nhật" }
+        title: "Luật Dân sự và Luật Tố tụng dân sự",
+         assets:[
+         {
+            label: "Slide LMS",
+            url: "/preview"
+          },
+          
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1C58fdS8FBsjCy_Mq1LjmHf-xld13rDW1s07mh9yxsy4/preview"
+          },
         ]
       },
       {
         n: 8,
-        title: "Pháp luật kinh tế",
-        desc: "Chưa thấy PDF tương ứng trong repository hiện tại; mục này để bạn bổ sung đúng tài liệu môn học.",
-        assets: [
-          { label: "Tài liệu đang cập nhật" }
-        ]
-      },
-      {
-        n: 9,
-        title: "Sở hữu trí tuệ",
-        desc: "Chưa thấy PDF tương ứng trong repository hiện tại; mục này để bạn bổ sung đúng tài liệu môn học.",
-        assets: [
-          { label: "Tài liệu đang cập nhật" }
+        title: "Luật Lao động ",
+         assets:[
+          {
+            label: "Slide LMS",
+            url: "/preview"
+          },
+          
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1C58fdS8FBsjCy_Mq1LjmHf-xld13rDW1s07mh9yxsy4/preview"
+          },
+           {
+            n: 9,
+            title: "Luật Kinh doanh",
+            assets:[
+          {
+            label: "Slide LMS",
+            url: "/preview"
+          },
+          
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1C58fdS8FBsjCy_Mq1LjmHf-xld13rDW1s07mh9yxsy4/preview"
+          },
         ]
       }
     ];
+
 
     /* ==================================================
        2. LẤY CÁC PHẦN TỬ HTML CẦN DÙNG
