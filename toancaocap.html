@@ -2,15 +2,15 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#800020">
   <title>Toán cao cấp 1 | Kho học tập PTIT</title>
 
   <style>
-    /* =========================================================
-       1. MÀU SẮC VÀ THIẾT LẬP CHUNG
-       Bạn có thể đổi màu website tại các biến trong :root.
-       ========================================================= */
+    /* =========================
+       1. MÀU SẮC DÙNG CHUNG
+       Bạn có thể đổi các mã màu ở đây.
+       ========================= */
     :root {
       --wine: #800020;
       --wine-light: #a12a4b;
@@ -18,12 +18,19 @@
       --muted: #667085;
       --background: #f6f7fb;
       --border: #e5e7eb;
-      --soft-pink: #fff1f4;
-      --white: #ffffff;
+      --pink-light: #fff1f4;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    /* =========================
+       2. THIẾT LẬP CƠ BẢN
+       ========================= */
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
@@ -32,45 +39,39 @@
       font: 16px/1.6 "Segoe UI", Arial, sans-serif;
     }
 
-    a { color: var(--wine); }
-
-    .container {
-      width: min(1120px, calc(100% - 36px));
-      margin: 0 auto;
+    a {
+      color: var(--wine);
     }
 
-    /* =========================================================
-       2. ĐẦU TRANG VÀ THANH ĐIỀU HƯỚNG
-       ========================================================= */
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    /* =========================
+       3. PHẦN ĐẦU TRANG
+       ========================= */
     .hero {
       padding: 38px 20px 32px;
-      color: var(--white);
+      color: white;
       background: linear-gradient(135deg, #5b1027, var(--wine), #a63c5d);
     }
 
-    .hero-top {
+    .topline {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
       gap: 16px;
+      flex-wrap: wrap;
     }
 
     .brand {
       color: #ffe2e9;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: bold;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-    }
-
-    .home-link {
-      padding: 8px 12px;
-      border: 1px solid #ffffff80;
-      border-radius: 12px;
-      color: white;
-      font-size: 14px;
-      text-decoration: none;
     }
 
     .hero h1 {
@@ -85,6 +86,18 @@
       color: #ffeaf0;
     }
 
+    .home-link {
+      padding: 8px 12px;
+      border: 1px solid #ffffff80;
+      border-radius: 12px;
+      color: white;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    /* =========================
+       4. THANH ĐIỀU HƯỚNG
+       ========================= */
     .nav {
       position: sticky;
       top: 0;
@@ -93,7 +106,7 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .nav-inner {
+    .navin {
       display: flex;
       gap: 6px;
       overflow-x: auto;
@@ -111,25 +124,26 @@
 
     .nav a:hover,
     .nav a.active {
-      background: var(--soft-pink);
+      background: var(--pink-light);
       color: var(--wine);
-      font-weight: 700;
+      font-weight: bold;
     }
 
-    /* =========================================================
-       3. THẺ GIỚI THIỆU VÀ DANH MỤC CHƯƠNG
-       ========================================================= */
-    main { padding: 28px 0 56px; }
+    /* =========================
+       5. KHỐI NỘI DUNG VÀ THẺ
+       ========================= */
+    main {
+      padding: 28px 0 56px;
+    }
 
-    .intro {
+    .intro{
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1fr;
       gap: 16px;
       margin-bottom: 22px;
     }
 
     .panel {
-      min-width: 0;
       padding: 20px;
       border: 1px solid var(--border);
       border-radius: 18px;
@@ -143,7 +157,10 @@
       font-size: 20px;
     }
 
-    .panel p { margin: 0; color: var(--muted); }
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+    }
 
     .stats {
       display: flex;
@@ -158,7 +175,7 @@
       background: #faf0f3;
       color: var(--wine);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: bold;
     }
 
     .toolbar {
@@ -170,12 +187,13 @@
       margin: 24px 0 14px;
     }
 
-    .toolbar h2 { margin: 0; font-size: 23px; }
+    .toolbar h2 {
+      margin: 0;
+      font-size: 23px;
+    }
 
-    .search,
-    .canva-input {
-      width: 100%;
-      min-width: 0;
+    .search {
+      min-width: min(100%, 280px);
       padding: 11px 14px;
       border: 1px solid #d0d5dd;
       border-radius: 12px;
@@ -183,15 +201,13 @@
       font: inherit;
     }
 
-    .search { max-width: 360px; }
+    .reader[hidden] { display: none; }
+    .reader iframe { display: block; width: 100%; min-height: 420px; height: min(72vh, 800px); margin-top: 12px; border: 1px solid var(--border); border-radius: 10px; background: white; }
 
     .grid {
       display: grid;
-      /* Mỗi chương chiếm trọn một hàng để khung PDF mở ngay dưới chương đó,
-         không bị nằm cạnh chương khác trên cùng một hàng. */
       grid-template-columns: minmax(0, 1fr);
       gap: 14px;
-      align-items: start;
     }
 
     .chapter {
@@ -215,13 +231,13 @@
       height: 30px;
       margin-right: 8px;
       border-radius: 10px;
-      background: var(--soft-pink);
+      background: var(--pink-light);
       color: var(--wine);
       font-size: 13px;
       font-weight: 800;
     }
 
-    .chapter-description {
+    .chapter p {
       margin: 0 0 12px;
       color: var(--muted);
       font-size: 14px;
@@ -233,21 +249,17 @@
       gap: 8px;
     }
 
-    /* =========================================================
-       4. NÚT VÀ KHUNG XEM TÀI LIỆU NGAY DƯỚI CHƯƠNG
-       ========================================================= */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 40px;
       padding: 8px 11px;
       border: 1px solid #e2b9c5;
       border-radius: 10px;
       background: #fff7f9;
       color: var(--wine);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: bold;
       text-decoration: none;
       cursor: pointer;
     }
@@ -258,51 +270,76 @@
       color: white;
     }
 
-    .btn:disabled,
     .btn.disabled {
       border-color: var(--border);
       background: #f5f6f8;
       color: #8b909b;
-      cursor: not-allowed;
+      cursor: default;
     }
 
-    .inline-reader {
+    /* Sơ đồ tư duy Canva hiển thị ngay trong trang */
+    .mindmap-panel {
       margin-top: 16px;
-      padding: 12px;
+      padding: 14px;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      background: #f8f9fb;
+      border-radius: 14px;
+      background: #fff;
     }
 
-    .inline-reader[hidden] { display: none; }
+    .mindmap-panel[hidden] { display: none; }
+
+    .mindmap-panel iframe {
+      display: block;
+      width: 100%;
+      height: min(75vh, 820px);
+      min-height: 380px;
+      margin: 12px 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    @media (max-width: 640px) {
+      .mindmap-panel { padding: 10px; }
+      .mindmap-panel iframe { height: 68vh; min-height: 320px; }
+    }
+
+    /* =========================
+       6. KHUNG XEM TÀI LIỆU
+       ========================= */
+    .reader {
+      display: none;
+      margin-top: 24px;
+    }
+
+    .reader.show {
+      display: block;
+    }
 
     .reader-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
     }
 
-    .reader-title {
+    .reader h2 {
       margin: 0;
-      color: var(--wine);
-      font-size: 15px;
+      font-size: 20px;
     }
 
-    .reader-frame {
-      display: block;
+    .reader iframe {
       width: 100%;
-      height: min(72vh, 760px);
-      min-height: 360px;
+      height: min(76vh, 850px);
+      min-height: 440px;
       margin-top: 12px;
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 12px;
       background: white;
     }
 
-    .notice,
-    .reader-tip {
+    .notice {
       margin-top: 10px;
       color: var(--muted);
       font-size: 13px;
@@ -316,35 +353,9 @@
       color: var(--muted);
     }
 
-    /* =========================================================
-       5. Ô LƯU LINK CANVA
-       Link được lưu trong trình duyệt này, không tự đồng bộ
-       sang thiết bị khác.
-       ========================================================= */
-    .canva-panel { margin-top: 24px; }
-    .canva-fields {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 14px;
-    }
-
-    .field label {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .field .hint {
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .canva-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-    .save-status { margin-top: 10px; color: var(--muted); font-size: 13px; }
-
+    /* =========================
+       7. CHÂN TRANG
+       ========================= */
     .footer {
       padding: 22px 0;
       border-top: 1px solid var(--border);
@@ -353,21 +364,30 @@
       font-size: 13px;
     }
 
-    /* =========================================================
-       6. BỐ CỤC ĐIỆN THOẠI
-       ========================================================= */
+    /* =========================
+       8. GIAO DIỆN ĐIỆN THOẠI
+       ========================= */
     @media (max-width: 720px) {
       .intro,
-      .grid,
-      .canva-fields { grid-template-columns: 1fr; }
+      .grid {
+        grid-template-columns: 1fr;
+      }
 
-      .hero { padding: 28px 0; }
-      .hero h1 { font-size: 29px; }
-      .container { width: calc(100% - 28px); }
-      .reader-frame { min-height: 320px; height: 65vh; }
-      .search { max-width: none; }
-      .panel, .chapter { padding: 15px; }
-      .canva-actions .btn { flex: 1 1 100%; }
+      .hero {
+        padding: 28px 0;
+      }
+
+      .hero h1 {
+        font-size: 29px;
+      }
+
+      .reader iframe {
+        min-height: 360px;
+      }
+
+      .wrap {
+        padding: 0 14px;
+      }
     }
   </style>
 </head>
@@ -375,20 +395,23 @@
 <body>
   <!-- PHẦN ĐẦU TRANG -->
   <header class="hero">
-    <div class="container">
-      <div class="hero-top">
+    <div class="wrap">
+      <div class="topline">
         <div class="brand">BloomVerse · Kho học tập PTIT</div>
         <a class="home-link" href="index.html">← Về trang chủ</a>
       </div>
 
-      <h1>📐 Toán cao cấp 1</h1>
-      <p>Không gian lưu trữ giáo trình, slide, công thức trọng tâm và bài tập Toán cao cấp 1.</p>
+      <h1>Toán cao cấp 1</h1>
+      <p>
+        Kho tài liệu học phần Toán cao cấp 1
+        Các chương chưa có PDF sẽ được ghi rõ để tránh dẫn tới liên kết giả.
+      </p>
     </div>
   </header>
 
-  <!-- THANH ĐIỀU HƯỚNG CÁC MÔN -->
-  <nav class="nav" aria-label="Điều hướng các môn học">
-    <div class="container nav-inner">
+  <!-- THANH ĐIỀU HƯỚNG GIỮA CÁC MÔN -->
+  <nav class="nav">
+    <div class="wrap navin">
       <a href="index.html">⌂ Trang chủ</a>
       <a href="nguyenliketoan.html">Nguyên lý kế toán</a>
       <a href="toancaocap.html">Toán cao cấp 1</a>
@@ -398,356 +421,434 @@
     </div>
   </nav>
 
-  <main class="container">
-    <!-- THÔNG TIN TỔNG QUAN -->
+  <main class="wrap">
+    <!-- GIỚI THIỆU VÀ LIÊN KẾT HỮU ÍCH -->
     <section class="intro">
       <div class="panel">
         <h2>📚 Không gian học tập</h2>
-        <p>Chọn tài liệu trong từng chương để xem ngay bên dưới chương đó. Khi có tài liệu mới, bạn chỉ cần bổ sung đường dẫn trong danh sách CHAPTERS ở cuối file.</p>
+        <p>
+          Chọn chương để mở tài liệu. Ưu tiên các PDF đã lưu ngay trong
+          repository để giảm phụ thuộc vào liên kết bên ngoài.
+          Trên điện thoại, nếu khung xem không hiển thị, hãy chọn “Mở tab mới”.
+        </p>
+
         <div class="stats">
           <span class="stat" id="chapterCount">Đang tải chương…</span>
-          <span class="stat">Tối ưu cho điện thoại</span>
+          <span class="stat">Tương thích điện thoại</span>
           <span class="stat">Có tìm kiếm</span>
         </div>
       </div>
 
-      <div class="panel">
-        <h2>🔗 Tài nguyên môn học</h2>
-        <p>Chưa có đường dẫn LMS được xác nhận cho môn này.</p>
-      </div>
+      
     </section>
 
-    <!-- Ô TÌM KIẾM -->
+    <!-- TÌM KIẾM VÀ DANH SÁCH CHƯƠNG -->
     <div class="toolbar">
       <h2>Danh mục chương</h2>
       <input
         class="search"
-        id="searchInput"
+        id="search"
         type="search"
         placeholder="Tìm chương hoặc tài liệu…"
         aria-label="Tìm chương hoặc tài liệu"
       >
     </div>
 
-    <!-- JavaScript sẽ tạo các thẻ chương tại đây -->
-    <section class="grid" id="chapterGrid"></section>
+    <!-- JavaScript sẽ đưa các thẻ chương vào khu vực này -->
+    <section class="grid" id="chapters"></section>
 
-    <!-- Ô CANVA: nhập link xem và link chỉnh sửa của môn này -->
-    <section class="panel canva-panel" aria-labelledby="canvaHeading">
-      <h2 id="canvaHeading">🎨 Canva — xem và chỉnh sửa</h2>
-      <p>Nhập link Canva của môn học. Hãy dùng link “Chỉnh sửa” do Canva cung cấp nếu muốn tiếp tục sửa thiết kế. Không có link sẵn nên mình không tự tạo hoặc đoán link.</p>
-
-      <div class="canva-fields">
-        <div class="field">
-          <label for="canvaViewUrl">Link xem Canva</label>
-          <input class="canva-input" id="canvaViewUrl" type="url" placeholder="https://www.canva.com/design/.../view">
-          <p class="hint">Dán liên kết xem hoặc trình chiếu.</p>
-        </div>
-        <div class="field">
-          <label for="canvaEditUrl">Link chỉnh sửa Canva</label>
-          <input class="canva-input" id="canvaEditUrl" type="url" placeholder="https://www.canva.com/design/.../edit">
-          <p class="hint">Dán liên kết chỉnh sửa có quyền truy cập.</p>
-        </div>
-      </div>
-
-      <div class="canva-actions">
-        <button class="btn primary" id="saveCanva" type="button">Lưu link Canva</button>
-        <button class="btn" id="openCanvaView" type="button">Xem Canva ↗</button>
-        <button class="btn" id="openCanvaEdit" type="button">Sửa Canva ↗</button>
-      </div>
-      <p class="save-status" id="canvaStatus" aria-live="polite">Link Canva được lưu trên trình duyệt hiện tại.</p>
-    </section>
   </main>
 
+  <!-- CHÂN TRANG -->
   <footer class="footer">
-    <div class="container">
-      BloomVerse · Kho học tập cá nhân · Kiểm tra quyền truy cập trước khi chia sẻ tài liệu.
+    <div class="wrap">
+      BloomVerse · Kho lưu trữ học tập cá nhân ·
+      Kiểm tra quyền truy cập trước khi chia sẻ tài liệu.
     </div>
   </footer>
 
   <script>
-    /* =========================================================
+    /* ==================================================
        1. DANH SÁCH CHƯƠNG VÀ TÀI LIỆU
-       Muốn thêm tài liệu, sửa đúng phần assets của chương:
-       { label: "Bài giảng PDF", url: "ten-file.pdf" }
-       Link PDF có thể là đường dẫn tương đối trong repository
-       hoặc một URL công khai. Không để url trống nếu muốn mở.
-       ========================================================= */
-    const CHAPTERS = [
-  {
-    "n": 1,
-    "title": "Ma trận và định thức",
-    "desc": "Ôn định nghĩa, phép toán ma trận, định thức và các tính chất.",
-    "assets": [
-      {
-        "label": "Tài liệu chưa được thêm",
-        "url": ""
-      }
-    ]
-  },
-  {
-    "n": 2,
-    "title": "Hệ phương trình tuyến tính",
-    "desc": "Phương pháp khử Gauss, ma trận hệ số và cách xác định nghiệm của hệ.",
-    "assets": [
-      {
-        "label": "Tài liệu chưa được thêm",
-        "url": ""
-      }
-    ]
-  },
-  {
-    "n": 3,
-    "title": "Không gian vectơ và ánh xạ tuyến tính",
-    "desc": "Chủ đề tham khảo; hãy đối chiếu với đề cương chính thức của lớp.",
-    "assets": [
-      {
-        "label": "Tài liệu chưa được thêm",
-        "url": ""
-      }
-    ]
-  },
-  {
-    "n": 4,
-    "title": "Giới hạn và liên tục",
-    "desc": "Khái niệm giới hạn, tính liên tục và các dạng bài tập tương ứng.",
-    "assets": [
-      {
-        "label": "Tài liệu chưa được thêm",
-        "url": ""
-      }
-    ]
-  },
-  {
-    "n": 5,
-    "title": "Đạo hàm và ứng dụng",
-    "desc": "Công thức, quy tắc tính đạo hàm và bài tập ứng dụng.",
-    "assets": [
-      {
-        "label": "Tài liệu chưa được thêm",
-        "url": ""
-      }
-    ]
-  }
-];
 
-    /* =========================================================
-       2. KẾT NỐI HTML VỚI JAVASCRIPT
-       ========================================================= */
-    const chapterGrid = document.getElementById("chapterGrid");
-    const searchInput = document.getElementById("searchInput");
+       Khi muốn thêm hoặc sửa tài liệu, bạn chủ yếu sửa
+       dữ liệu trong danh sách này.
+       - n: số chương
+       - title: tên chương
+       - desc: mô tả (không bắt buộc)
+       - assets: các tài liệu thuộc chương
+       - label: chữ hiển thị trên nút
+       - url: đường dẫn tài liệu
+       ================================================== */
+
+        const chapters = [
+      {
+        n: 1,
+        title: "Hàm số và giới hạn",
+        assets:[
+          {
+            label: "Bài giảng PDF",
+            url: "https://drive.google.com/file/d/1S9tkkAC4I6AbkWCCY2YtTR5GXw9-oJkx/preview"
+          },
+          {
+            label: "Slide PDF",
+            url: "https://drive.google.com/file/d/1RqgNqVKUJKiLn-9Fm-MzySR0gK9bP9UD/preview"
+          },
+          
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1SF2WXW8if939bCW4a6sqV7wT0tubNST5yt9oMpCsnw8/preview"
+          },
+        ]
+      },
+      {
+        n: 2,
+        title: "Phương pháp chứng từ kế toán",
+        assets:[
+          {
+            label: "Bài giảng PDF",
+            url: "https://drive.google.com/file/d/1M3WvlYfz7sosEOhDpayRKEK3-L0fsClt/preview"
+          },
+          {
+            label: "Slide PDF",
+            url: "https://drive.google.com/file/d/1vWSOpBuhrV375mf1X2JKGmvhcVd0w6u3/preview"
+          },
+    
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1SF2WXW8if939bCW4a6sqV7wT0tubNST5yt9oMpCsnw8/preview"
+          },
+        ]
+      },
+      {
+        n: 3,
+        title: "Phương pháp tính giá",
+         assets:[
+          {
+            label: "Bài giảng PDF",
+            url: "https://drive.google.com/file/d/1IkC2ALEIJQPAiE7Jrq466h6NCJVjyj3K/preview"
+          },
+          {
+            label: "Slide PDF",
+            url: "https://drive.google.com/file/d/1xrqs9M06yhOturdOOTFoJ_2cexZo3gMG/preview"
+          },
+          {
+            label: "Slide LMS",
+            url: "https://drive.google.com/file/d/1w4f315AKgYJUett_-5eT3hW6dsA57i-1/preview"
+          },
+          
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1SF2WXW8if939bCW4a6sqV7wT0tubNST5yt9oMpCsnw8/preview"
+          },
+        ]
+      },
+      {
+        n: 4,
+        title: "Phương pháp tài khoản kế toán",
+         assets:[
+          {
+            label: "Bài giảng PDF",
+            url: "https://drive.google.com/file/d/1GA31legEFWAW7eiCm_6gLES7U4QKIuOT/preview"
+          },
+          {
+            label: "Slide PDF",
+            url: "https://drive.google.com/file/d/1BIKGr15po9MnvzkAi_8eOB4IpVaWOKFj/preview"
+          },
+          {
+            label: "Slide LMS",
+           
+          },
+         
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1SF2WXW8if939bCW4a6sqV7wT0tubNST5yt9oMpCsnw8/preview"
+          },
+        ]
+      },
+      {
+        n: 5,
+        title: "Phương pháp tổng hợp cân đối kế toán",
+         assets:[
+          {
+            label: "Bài giảng PDF",
+            url: "https://drive.google.com/file/d/19P58O0QZcIN5pXsp2AF0u-wTvP65UoI8/preview"
+          },
+          {
+            label: "Slide PDF",
+        
+          },
+          {
+            label: "Slide LMS",
+           
+          },
+          
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1SF2WXW8if939bCW4a6sqV7wT0tubNST5yt9oMpCsnw8/preview"
+          },
+        ]
+      },
+      {
+        n: 6,
+        title: "Hạch toán một số quá trình sản xuất kinh doanh chủ yếu",
+         assets:[
+          {
+            label: "Bài giảng PDF",
+            url: "https://drive.google.com/file/d/19r8POAY2I7fRVV-UsZ5ORk4NB1mQwvIt/preview"
+          },
+          {
+            label: "Slide PDF",
+            
+          },
+          {
+            label: "Slide LMS",
+            
+          },
+          
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1SF2WXW8if939bCW4a6sqV7wT0tubNST5yt9oMpCsnw8/preview"
+          },
+        ]
+      },
+      {
+        n: 7,
+        title: "Sổ kế toán và hình thức kế toán",
+         assets:[
+          {
+            label: "Bài giảng PDF",
+            url: "https://drive.google.com/file/d/1hC5yt7eVszw6TSNsJFXBpjjQnPIGGrwk/preview"
+          },
+          {
+            label: "Slide PDF",
+            
+          },
+          {
+            label: "Slide LMS",
+            
+          },
+         
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1SF2WXW8if939bCW4a6sqV7wT0tubNST5yt9oMpCsnw8/preview"
+          },
+        ]
+      },
+      {
+        n: 8,
+        title: "Tổ chức công tác kế toán",
+         assets:[
+          {
+            label: "Bài giảng PDF",
+            url: "https://drive.google.com/file/d/1CubMrOWlPO8QfqqJqeRfoB113qWljYzZ/preview"
+          },
+          {
+            label: "Slide PDF",
+            
+          },
+          {
+            label: "Slide LMS",
+           
+          },
+          
+          {
+            label: "Bài tập",
+            url: "https://docs.google.com/document/d/1SF2WXW8if939bCW4a6sqV7wT0tubNST5yt9oMpCsnw8/preview"
+          },
+        ]
+      }
+    ];
+
+
+    /* ==================================================
+       2. LẤY CÁC PHẦN TỬ HTML CẦN DÙNG
+       ================================================== */
+
+    const chapterList = document.getElementById("chapters");
+    const searchInput = document.getElementById("search");
     const chapterCount = document.getElementById("chapterCount");
 
-    chapterCount.textContent = CHAPTERS.length + " chương";
 
-    /* Tránh chèn các ký tự đặc biệt vào HTML ngoài ý muốn. */
-    function escapeHTML(value) {
-      return String(value).replace(/[&<>"']/g, function (character) {
-        const entities = {
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#39;"
-        };
-        return entities[character];
-      });
-    }
+    // Hiển thị tổng số mục trong danh sách.
+    chapterCount.textContent = chapters.length + " mục học tập";
 
-    /* =========================================================
-       3. TẠO THẺ CHƯƠNG VÀ NÚT TÀI LIỆU
-       Mỗi chương có khung xem riêng nằm ngay bên dưới nó.
-       ========================================================= */
+    /* ==================================================
+       3. HIỂN THỊ DANH SÁCH CHƯƠNG
+       ================================================== */
+
     function renderChapters() {
       const keyword = searchInput.value.trim().toLocaleLowerCase("vi");
-
-      const filteredChapters = CHAPTERS.filter(function (chapter) {
-        const resourceNames = (chapter.assets || [])
-          .map(function (asset) { return asset.label; })
-          .join(" ");
-
-        return (chapter.title + " " + chapter.desc + " " + resourceNames)
-          .toLocaleLowerCase("vi")
-          .includes(keyword);
+      const filteredChapters = chapters.filter(function (chapter) {
+        const names = chapter.assets.map(function (asset) { return asset.label; }).join(" ");
+        return (chapter.title + " " + (chapter.desc || "") + " " + names)
+          .toLocaleLowerCase("vi").includes(keyword);
       });
 
       if (filteredChapters.length === 0) {
-        chapterGrid.innerHTML =
-          '<div class="empty">Không tìm thấy chương hoặc tài liệu phù hợp.</div>';
+        chapterList.innerHTML = '<div class="empty">Không tìm thấy chương hoặc tài liệu phù hợp.</div>';
         return;
       }
 
-      chapterGrid.innerHTML = filteredChapters.map(function (chapter) {
-        const cardId = "chapter-" + chapter.n;
-        const assets = (chapter.assets || []).map(function (asset, index) {
-          if (!asset.url) {
-            return '<span class="btn disabled">' +
-              escapeHTML(asset.label) + '</span>';
-          }
-
-          return '<button class="btn" type="button" ' +
-            'data-open-document="' + escapeHTML(cardId) + '" ' +
-            'data-url="' + escapeHTML(asset.url) + '" ' +
-            'data-title="' + escapeHTML(asset.label) + '">' +
-            escapeHTML(asset.label) + ' · Xem</button>';
+      chapterList.innerHTML = filteredChapters.map(function (chapter) {
+        const assetButtons = chapter.assets.map(function (asset) {
+          if (!asset.url) return '<span class="btn disabled">' + asset.label + '</span>';
+          return '<a class="btn resource-link" href="' + asset.url +
+            '" target="_blank" rel="noopener">' + asset.label + ' · Xem</a>';
         }).join("");
 
-        return '<article class="chapter" id="' + cardId + '">' +
-          '<h3><span class="number">' + chapter.n + '</span>' +
-          escapeHTML(chapter.title) + '</h3>' +
-          '<p class="chapter-description">' + escapeHTML(chapter.desc) + '</p>' +
-          '<div class="assets">' + assets + '</div>' +
-
-          '<section class="inline-reader" data-reader-for="' + cardId + '" hidden>' +
-            '<div class="reader-head">' +
-              '<h4 class="reader-title">Trình xem tài liệu</h4>' +
+        return '<article class="chapter">' +
+          '<h3><span class="number">' + chapter.n + '</span>' + chapter.title + '</h3>' +
+          '<p>' + (chapter.desc || "Tài liệu và nội dung ôn tập của chương.") + '</p>' +
+          '<div class="assets">' + assetButtons + '</div>' +
+          '<section class="panel reader" data-reader hidden>' +
+            '<div class="reader-head"><h2 data-reader-title>Trình xem tài liệu</h2>' +
               '<div class="assets">' +
-                '<a class="btn primary" data-open-original href="#" target="_blank" rel="noopener noreferrer">Mở tab mới ↗</a>' +
-                '<button class="btn" type="button" data-close-document>Đóng</button>' +
+                '<a class="btn primary" data-open-original href="#" target="_blank" rel="noopener">Mở tab mới ↗</a>' +
+                '<button class="btn" data-close-reader type="button">Đóng</button>' +
               '</div>' +
             '</div>' +
-            '<iframe class="reader-frame" title="Trình xem tài liệu" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>' +
-            '<p class="reader-tip">Khung xem nằm ngay dưới chương này. Nếu nguồn tài liệu không cho phép nhúng, hãy thử “Mở tab mới”.</p>' +
-          '</section>' +
-        '</article>';
+            '<iframe data-reader-frame title="Trình xem tài liệu" loading="lazy"></iframe>' +
+            '<p class="notice">Khung xem nằm ngay dưới chương này. Nếu nguồn không cho phép nhúng, hãy thử mở tab mới.</p>' +
+          '</section></article>';
       }).join("");
     }
 
-    /* =========================================================
-       4. CHỌN CÁCH HIỂN THỊ TÀI LIỆU
-       Google Drive /preview được giữ nguyên.
-       PDF trực tiếp dùng Google Docs Viewer để tăng khả năng
-       hiển thị trong khung trên điện thoại.
-       ========================================================= */
-    function getViewerURL(url) {
+    /* ==================================================
+       4. MỞ TÀI LIỆU TRONG KHUNG XEM
+       ================================================== */
+
+    // Tạo URL trình xem phù hợp cho PDF.
+    function getViewerUrl(url) {
+      // Google Drive đã có sẵn trình xem nhúng nên giữ nguyên URL /preview.
       if (url.includes("drive.google.com") && url.includes("/preview")) {
         return url;
       }
 
+      // Canva: dùng chế độ nhúng để sơ đồ hiện trong khung của chương.
+      if (url.includes("canva.com/design/")) {
+        const cleanUrl = url.split("?")[0].replace(/\/$/, "");
+        return cleanUrl + "/view?embed";
+      }
+
+      // PDF nằm trên website/GitHub Pages: chuyển qua Google Docs Viewer.
+      // Trình xem này thường hoạt động tốt hơn iframe PDF gốc trên điện thoại.
       if (/\.pdf($|\?)/i.test(url)) {
-        const publicPDFURL = new URL(url, window.location.href).href;
+        const publicPdfUrl = new URL(url, window.location.href).href;
         return "https://docs.google.com/gview?embedded=1&url=" +
-          encodeURIComponent(publicPDFURL);
+          encodeURIComponent(publicPdfUrl);
       }
 
       return url;
     }
 
-    /* =========================================================
-       5. XỬ LÝ CÁC NÚT XEM / ĐÓNG TÀI LIỆU
-       ========================================================= */
-    chapterGrid.addEventListener("click", function (event) {
-      const openButton = event.target.closest("[data-open-document]");
-      const closeButton = event.target.closest("[data-close-document]");
+    function openDocument(url, title, chapterCard) {
+      const reader = chapterCard.querySelector("[data-reader]");
+      const frame = reader.querySelector("[data-reader-frame]");
+      reader.querySelector("[data-reader-title]").textContent = title.replace("↗", "").trim();
+      reader.querySelector("[data-open-original]").href = new URL(url, window.location.href).href;
 
-      if (openButton) {
-        const cardId = openButton.dataset.openDocument;
-        const card = document.getElementById(cardId);
-        const reader = card.querySelector("[data-reader-for]");
-        const frame = reader.querySelector("iframe");
-        const originalLink = reader.querySelector("[data-open-original]");
-        const sourceURL = openButton.dataset.url;
+      document.querySelectorAll("[data-reader]").forEach(function (item) {
+        if (item !== reader) {
+          item.hidden = true;
+          item.classList.remove("show");
+          item.querySelector("[data-reader-frame]").src = "about:blank";
+        }
+      });
 
-        // Chỉ mở tài liệu của chương vừa được bấm.
-        document.querySelectorAll(".inline-reader").forEach(function (item) {
-          if (item !== reader) {
-            item.hidden = true;
-            item.querySelector("iframe").src = "about:blank";
-          }
+      frame.src = getViewerUrl(url);
+      reader.hidden = false;
+      reader.classList.add("show");
+      reader.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function addDocumentButtonEvents() {
+      chapterList.querySelectorAll("a.resource-link").forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          const url = link.getAttribute("href");
+          if (!(/\.pdf($|\?)/i.test(url) || url.includes("/preview") || url.includes("canva.com/design/"))) return;
+          if (event.ctrlKey || event.metaKey || event.shiftKey) return;
+          event.preventDefault();
+          openDocument(url, link.textContent.trim(), link.closest(".chapter"));
         });
+      });
 
-        reader.hidden = false;
-        reader.querySelector(".reader-title").textContent =
-          openButton.dataset.title;
-        frame.src = getViewerURL(sourceURL);
-        originalLink.href = new URL(sourceURL, window.location.href).href;
+      chapterList.querySelectorAll("[data-close-reader]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          const reader = button.closest("[data-reader]");
+          reader.querySelector("[data-reader-frame]").src = "about:blank";
+          reader.classList.remove("show");
+          reader.hidden = true;
+        });
+      });
+    }
 
-        reader.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    // Mở/đóng sơ đồ tư duy Canva ngay trong trang, không chuyển trang.
+    const toggleMindmap = document.getElementById("toggleMindmap");
+    const mindmapPanel = document.getElementById("mindmapPanel");
+    const mindmapFrame = document.getElementById("mindmapFrame");
+    const closeMindmap = document.getElementById("closeMindmap");
+    const mindmapEmbedUrl =
+      "https://www.canva.com/design/DAHV8CDTDyY/zKcw60F2jE-aLPsRjm_45g/view?embed";
+
+    toggleMindmap.addEventListener("click", function () {
+      const willOpen = mindmapPanel.hidden;
+      mindmapPanel.hidden = !willOpen;
+      toggleMindmap.setAttribute("aria-expanded", String(willOpen));
+      toggleMindmap.textContent = willOpen
+        ? "Ẩn sơ đồ tư duy"
+        : "Xem sơ đồ tư duy ngay tại đây";
+
+      if (willOpen) {
+        mindmapFrame.src = mindmapEmbedUrl;
+        mindmapPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      } else {
+        mindmapFrame.src = "about:blank";
       }
+    });
+
+    closeMindmap.addEventListener("click", function () {
+      mindmapPanel.hidden = true;
+      mindmapFrame.src = "about:blank";
+      toggleMindmap.setAttribute("aria-expanded", "false");
+      toggleMindmap.textContent = "Xem sơ đồ tư duy ngay tại đây";
+    });
+
+    /* ==================================================
+       6. ĐÓNG KHUNG XEM VÀ TÌM KIẾM
+       ================================================== */
+
+    // Bắt sự kiện bằng event delegation để nút Xem vẫn hoạt động
+    // sau mỗi lần tìm kiếm và vẽ lại danh sách chương.
+    chapterList.addEventListener("click", function (event) {
+      const link = event.target.closest("a.resource-link");
+      const closeButton = event.target.closest("[data-close-reader]");
 
       if (closeButton) {
-        const reader = closeButton.closest(".inline-reader");
-        reader.querySelector("iframe").src = "about:blank";
+        const reader = closeButton.closest("[data-reader]");
+        reader.querySelector("[data-reader-frame]").src = "about:blank";
+        reader.classList.remove("show");
         reader.hidden = true;
-      }
-    });
-
-    /* =========================================================
-       6. Ô CANVA
-       Link lưu bằng localStorage, chỉ có trên trình duyệt này.
-       Để dùng trên máy khác, nhập link lại hoặc sửa mặc định
-       trong code và cập nhật file lên GitHub.
-       ========================================================= */
-    const CANVA_STORAGE_KEY = "bloomverse_canva_toancao";
-    const canvaViewInput = document.getElementById("canvaViewUrl");
-    const canvaEditInput = document.getElementById("canvaEditUrl");
-    const canvaStatus = document.getElementById("canvaStatus");
-
-    function loadCanvaLinks() {
-      try {
-        const savedLinks = JSON.parse(localStorage.getItem(CANVA_STORAGE_KEY) || "{}");
-        canvaViewInput.value = savedLinks.view || "";
-        canvaEditInput.value = savedLinks.edit || "";
-      } catch (error) {
-        canvaStatus.textContent = "Không thể đọc link đã lưu trên trình duyệt này.";
-      }
-    }
-
-    function isValidWebURL(value) {
-      try {
-        const parsedURL = new URL(value);
-        return parsedURL.protocol === "https:" &&
-          (parsedURL.hostname === "canva.com" || parsedURL.hostname.endsWith(".canva.com"));
-      } catch (error) {
-        return false;
-      }
-    }
-
-    document.getElementById("saveCanva").addEventListener("click", function () {
-      const viewURL = canvaViewInput.value.trim();
-      const editURL = canvaEditInput.value.trim();
-
-      if ((viewURL && !isValidWebURL(viewURL)) ||
-          (editURL && !isValidWebURL(editURL))) {
-        canvaStatus.textContent = "Link chưa đúng định dạng. Hãy dán liên kết HTTPS từ canva.com.";
         return;
       }
 
-      try {
-        localStorage.setItem(CANVA_STORAGE_KEY, JSON.stringify({
-          view: viewURL,
-          edit: editURL
-        }));
-        canvaStatus.textContent = "Đã lưu link Canva trên trình duyệt này.";
-      } catch (error) {
-        canvaStatus.textContent = "Trình duyệt không cho phép lưu link. Bạn có thể dùng link ngay sau khi nhập.";
-      }
+      if (!link) return;
+
+      const url = link.getAttribute("href");
+      const canEmbed = /\.pdf($|\?)/i.test(url) ||
+        url.includes("/preview") || url.includes("canva.com/design/");
+
+      if (!canEmbed || event.ctrlKey || event.metaKey || event.shiftKey) return;
+
+      event.preventDefault();
+      openDocument(url, link.textContent.trim(), link.closest(".chapter"));
     });
 
-    document.getElementById("openCanvaView").addEventListener("click", function () {
-      const url = canvaViewInput.value.trim();
-      if (!isValidWebURL(url)) {
-        canvaStatus.textContent = "Hãy nhập link xem Canva hợp lệ trước.";
-        return;
-      }
-      window.open(url, "_blank", "noopener,noreferrer");
-    });
-
-    document.getElementById("openCanvaEdit").addEventListener("click", function () {
-      const url = canvaEditInput.value.trim();
-      if (!isValidWebURL(url)) {
-        canvaStatus.textContent = "Hãy nhập link chỉnh sửa Canva hợp lệ trước.";
-        return;
-      }
-      window.open(url, "_blank", "noopener,noreferrer");
-    });
-
-    /* =========================================================
-       7. TÌM KIẾM VÀ KHỞI TẠO TRANG
-       ========================================================= */
+    // Mỗi khi người dùng nhập từ khóa, cập nhật danh sách chương.
     searchInput.addEventListener("input", renderChapters);
+
+    // Hiển thị danh sách chương ngay khi mở trang.
     renderChapters();
-    loadCanvaLinks();
   </script>
 </body>
 </html>
