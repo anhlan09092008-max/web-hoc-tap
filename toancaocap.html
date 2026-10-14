@@ -438,7 +438,39 @@
           <span class="stat">Có tìm kiếm</span>
         </div>
       </div>
+<div class="panel">
+        <h2>🔗 Tài nguyên môn học</h2>
+        <p>
+          <a
+            class="btn primary"
+            href="https://lms.ptit.edu.vn/courses/course-v1:PTIT+FIA1321+20261"
+            target="_blank"
+            rel="noopener"
+          >Mở LMS PTIT ↗</a>
 
+          <button class="btn" id="toggleMindmap" type="button" aria-expanded="false">
+            Xem sơ đồ tư duy ngay tại đây
+          </button>
+        </p>
+        
+
+        <!-- Sơ đồ tư duy Canva hiển thị ngay trên trang -->
+        <section class="mindmap-panel" id="mindmapPanel" hidden>
+          <div class="reader-head">
+            <h3>Sơ đồ tư duy — Nguyên lí kế toán</h3>
+            <button class="btn" id="closeMindmap" type="button">Đóng sơ đồ</button>
+          </div>
+          <iframe
+            id="mindmapFrame"
+            title="Sơ đồ tư duy Nguyên lí kế toán"
+            loading="lazy"
+            allowfullscreen
+            src="about:blank"
+          ></iframe>
+          <p class="notice">Nếu Canva không cho nhúng bản xem này, bạn vẫn có thể mở liên kết Canva gốc.</p>
+          <a class="btn" href="https://www.canva.com/design/DAHV8CDTDyY/zKcw60F2jE-aLPsRjm_45g/view" target="_blank" rel="noopener">Mở Canva ở tab mới ↗</a>
+        </section>
+      </div>
       
     </section>
 
