@@ -769,10 +769,8 @@
       // PDF nằm trên website/GitHub Pages: chuyển qua Google Docs Viewer.
       // Trình xem này thường hoạt động tốt hơn iframe PDF gốc trên điện thoại.
       if (/\.pdf($|\?)/i.test(url)) {
-        const publicPdfUrl = new URL(url, window.location.href).href;
-        return "https://docs.google.com/gview?embedded=1&url=" +
-          encodeURIComponent(publicPdfUrl);
-      }
+         return new URL(url, window.location.href).href;
+  }
 
       return url;
     }
